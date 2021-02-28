@@ -1,0 +1,62 @@
+version: "3.8"
+
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:1.19.7
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - frontend
+      - backend
+
+  frontend:
+    container_name: frontend
+    image: nginx:1.19.7
+    restart: unless-stopped
+    expose:
+      - 80
+      - 443
+    volumes:
+      - ./frontend/nginx.conf:/etc/nginx/nginx.conf
+      - ./frontend/build:/var/www/html
+
+  backend:
+    image: backend
+    container_name: backend
+    build: .
+    stdin_open: true
+    tty: true
+    expose:
+      - 80
+      - 443
+    environment:
+      SECRET_KEY: "${SECRET_KEY}"
+      DEBUG: "${DEBUG}"
+      DB_NAME: "${DB_NAME}"
+      DB_USER: "${DB_USER}"
+      DB_PASSWORD: "${DB_PASSWORD}"
+    volumes:
+      - ./backend:/src/backend
+    depends_on:
+      - db
+    links:
+      - db:db
+
+  db:
+    image: postgres:13
+    container_name: db
+    restart: always
+    environment:
+      POSTGRES_DB: "${DB_NAME}"
+      POSTGRES_USER: "${DB_USER}"
+      POSTGRES_PASSWORD: "${DB_PASSWORD}"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data: {}
