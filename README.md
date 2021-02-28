@@ -25,6 +25,13 @@ To run this project, the following dependencies must be installed:
 
 Setting up a Python virtual environment using `requirements.txt` may be helpful for local development (especially for IDEs), but it is not required to run the application since Docker takes care of that. If you choose to set up a virtual environment, tools like [pyenv](https://github.com/pyenv/pyenv) and [venv](https://docs.python.org/3/library/venv.html) may be helpful.
 
+For local dev purposes, the following packages should be installed:
+- django
+- pylint
+- mypy
+- black
+
+
 ### Setting up Environment Variables
 
 **Important**: before anything is run, a `.env` file must be set up in the project root directory. You may make a copy of `.env.example` to make your `.env`; just make sure that you generate a new key and password using some kind of password generator like the following:
@@ -54,6 +61,8 @@ At this point, the database is not yet set up to work with the Django app. To ru
 ```bash
 python manage.py migrate
 ```
+
+Once migrations are done, you can exit the backend shell with the `exit` command.
 
 You will need to run migrations once during setup and every time when models in the Django app are changed. For more information, read the [Django documentation on migrations](https://docs.djangoproject.com/en/3.1/topics/migrations/).
 
