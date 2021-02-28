@@ -11,6 +11,20 @@ Technologies used:
 - [Nginx](https://nginx.org/) for the reverse proxy and as a static web server
 - [Docker](https://www.docker.com) for deployment and tying everything else together
 
+## Architecture
+
+There are 4 Docker containers powering this appliction:
+- `db`: the PostgreSQL database
+- `backend`: the Django API server; depends on `db`
+- `frontend`: the static server serving frontend assets
+- `nginx`: the reverse proxy to serve frontend and backend requests from the same domain; depends on `frontend` and `backend`
+
+This project is designed to be a one-page application powered by React on the frontend and Django for the backend API server. Thus, frontend and backend are distinct code bases that only communicate with each other through a RESTful API (and possibly websockets in the future).
+
+To prevent [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) related issues, both the frontend and backend are served behind an Nginx reverse proxy from the same domain. URLs with the `/api/` prefix will be routed to the backend container while everything else will be routed to the frontend container.
+
+The frontend container is an Nginx static web server that serves the frontend assets compiled from React. URLs to actual static assets (e.g. images, css, js files) will be routed appropriately. Everything else will be served `index.html` (located in `frontend/build`) so that the React app can handle routing in the frontend.
+
 ## Setup/Getting Started
 
 ### Dependencies
@@ -119,6 +133,8 @@ To exit the shell, run `exit`.
 ## Database Access
 
 To access the PostgreSQL command line client, run `make db-shell` in the root project directory and then run `psql -d app` within the shell. Then you can run standard PostgreSQL commands.
+
+If the value of `DB_NAME` in `.env` is not "app", then the `psql` command from before should use that name instead of "app".
 
 ## Resetting Everything
 

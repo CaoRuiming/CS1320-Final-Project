@@ -8,7 +8,7 @@ DB_CONTAINER = db
 run: build up
 	echo 'Everything is up and running! Run `make down` to shut things down.'
 
-# restarts all containers
+# restarts and rebuilds all containers
 restart: down build up
 	echo 'Restarted containers! Run `make down` to shut things down.'
 
