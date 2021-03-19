@@ -35,6 +35,8 @@ To run this project, the following dependencies must be installed:
 - [Docker Compose](https://docs.docker.com/compose/install/): for setting up the container network
 - [Python 3.9+](https://www.python.org/downloads/): for local development
 
+If you are using an AWS instance running Amazon Linux 2, you can follow [this handy guide to install Docker and Docker Compose](https://gist.github.com/npearce/6f3c7826c7499587f00957fee62f8ee9).
+
 ### Python Virtual Environment
 
 Setting up a Python virtual environment using `requirements.txt` may be helpful for local development (especially for IDEs), but it is not required to run the application since Docker takes care of that. If you choose to set up a virtual environment, tools like [pyenv](https://github.com/pyenv/pyenv) and [venv](https://docs.python.org/3/library/venv.html) may be helpful.
