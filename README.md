@@ -1,3 +1,5 @@
+TODOS: write Django API endpoints, n
+
 # Q&A Discussion Board Application
 
 This is a final project for the class [CSCI 1320: Modern Web & Mobile Applications](http://cs.brown.edu/courses/csci1320/) taught at [Brown University](https://www.brown.edu).
