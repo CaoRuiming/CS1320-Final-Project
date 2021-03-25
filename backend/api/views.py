@@ -1,5 +1,6 @@
 from django.http import HttpRequest, HttpResponse
 
+<<<<<<< HEAD
 import json
 
 
@@ -35,3 +36,8 @@ def getPost(request: HttpRequest):
 
 def search(request: HttpRequest, response : HttpResponse):
   pass
+=======
+
+def test(request: HttpRequest):
+    return HttpResponse("Hello, world!")
+>>>>>>> dd0af6184fc6c40f5d027bc68eaac087f6f3f06e

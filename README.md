@@ -1,10 +1,13 @@
-TODOS: write Django API endpoints, n
+<<<<<<< HEAD
 
 # Q&A Discussion Board Application
+=======
+# Discourse: an Open Source Q&A Discussion Board
+>>>>>>> dd0af6184fc6c40f5d027bc68eaac087f6f3f06e
 
-This is a final project for the class [CSCI 1320: Modern Web & Mobile Applications](http://cs.brown.edu/courses/csci1320/) taught at [Brown University](https://www.brown.edu).
+Discourse is a final project for the class [CSCI 1320: Modern Web & Mobile Applications](http://cs.brown.edu/courses/csci1320/) taught at [Brown University](https://www.brown.edu).
 
-The goal of this project is to create an open source Q&A Discussion Board web application comparable to [Piazza](https://piazza.com/), [CampusWire](https://campuswire.com), and [Ed Discussion](https://edstem.org/).
+The goal of Discourse is to create an open source Q&A Discussion Board web application comparable to [Piazza](https://piazza.com/), [CampusWire](https://campuswire.com), and [Ed Discussion](https://edstem.org/).
 
 Technologies used:
 - [React](https://reactjs.org) for the frontend via [Create React App](https://create-react-app.dev)
@@ -37,6 +40,8 @@ To run this project, the following dependencies must be installed:
 - [Docker Compose](https://docs.docker.com/compose/install/): for setting up the container network
 - [Python 3.9+](https://www.python.org/downloads/): for local development
 
+If you are using an AWS instance running Amazon Linux 2, you can follow [this handy guide to install Docker and Docker Compose](https://gist.github.com/npearce/6f3c7826c7499587f00957fee62f8ee9).
+
 ### Python Virtual Environment
 
 Setting up a Python virtual environment using `requirements.txt` may be helpful for local development (especially for IDEs), but it is not required to run the application since Docker takes care of that. If you choose to set up a virtual environment, tools like [pyenv](https://github.com/pyenv/pyenv) and [venv](https://docs.python.org/3/library/venv.html) may be helpful.
@@ -50,7 +55,7 @@ For local dev purposes, the following packages should be installed:
 
 ### Setting up Environment Variables
 
-**Important**: before anything is run, a `.env` file must be set up in the project root directory. You may make a copy of `.env.example` to make your `.env`; just make sure that you generate a new key and password using some kind of password generator like the following:
+**Important**: before anything is run, a `.env` file must be set up in the project root directory. You may make a copy of `.env.example` to make your `.env`; just make sure that you generate a new key and password (`SECRET_KEY` and `DB_PASSWORD`) using some kind of password generator like the following:
 
 ```bash
 openssl rand -base64 32

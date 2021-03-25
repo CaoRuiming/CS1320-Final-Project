@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+<<<<<<< HEAD
   path('test/', views.test),
 
   #User routes
@@ -24,3 +25,7 @@ urlpatterns = [
   path('courses/<course_id>/search', views.search )
 
 ]
+=======
+    path("test/", views.test),
+]
+>>>>>>> dd0af6184fc6c40f5d027bc68eaac087f6f3f06e
