@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-
-# Q&A Discussion Board Application
-=======
 # Discourse: an Open Source Q&A Discussion Board
->>>>>>> dd0af6184fc6c40f5d027bc68eaac087f6f3f06e
 
 Discourse is a final project for the class [CSCI 1320: Modern Web & Mobile Applications](http://cs.brown.edu/courses/csci1320/) taught at [Brown University](https://www.brown.edu).
 

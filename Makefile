@@ -46,3 +46,6 @@ backend-shell:
 db-shell:
 	docker exec -it $(DB_CONTAINER) bash
 
+# runs python black on backend code
+black:
+	docker exec -i $(BACKEND_CONTAINER) python -m black api
