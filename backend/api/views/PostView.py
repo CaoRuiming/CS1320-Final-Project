@@ -25,9 +25,14 @@ class PostView(View):
             user = request.user
             is_student = user in post.course.students.all()
             is_instructor = user in post.course.instructors.all()
+
+            # students and instructors can view and edit posts; more granular
+            # permissions are handled in their respective view functions
             if request.method in ["GET", "PATCH"] and (is_student or is_instructor):
                 return view(request, course_id, post_id, *args, **kwargs)
-            elif request.method == "DELETE" and is_instructor:
+            
+            # only instructors can delete a post
+            if request.method == "DELETE" and is_instructor:
                 return view(request, course_id, post_id, *args, **kwargs)
             return HttpResponse("Unauthorized", status=401)
 
@@ -52,6 +57,8 @@ class PostView(View):
         is_author = post.author == user
         is_instructor = user in post.course.instructors.all()
         updated_values = loads(request.body)
+
+        # handle values that can be edited by any student/instructor
         student_updateable_keys = ["student_answer"]
         for key in student_updateable_keys:
             if key in updated_values:
@@ -61,6 +68,7 @@ class PostView(View):
             new_tags = Tag.objects.filter(id__in=updated_values["tags"])
             post.tags.add(*new_tags)
 
+        # handle values that can be edited by the author and any instructor
         if is_author or is_instructor:
             author_updateable_keys = [
                 "title",
@@ -73,11 +81,13 @@ class PostView(View):
                 if key in updated_values:
                     setattr(post, key, updated_values[key])
 
+        # handle values that can only be edited by instructors
         if is_instructor:
             instructor_updateable_keys = ["instructor_answer"]
             for key in instructor_updateable_keys:
                 if key in updated_values:
                     setattr(post, key, updated_values[key])
+
         post.save()
         return HttpResponse(dumps(PostService.post_to_dict(post)))
 
@@ -98,12 +108,16 @@ class PostView(View):
         """Create a new post."""
         course = Course.objects.get(id=course_id)
         payload = loads(request.body)
+
+        # create post with required fields
         new_post = Post(
             title=payload["title"],
             content=payload["content"],
             author=request.user,
             course=course,
         )
+
+        # handle optional fields
         if payload.get("parent", False):
             parent_post = Post.objects.get(id=payload["parent"])
             new_post.parent = parent_post
@@ -116,6 +130,7 @@ class PostView(View):
             new_post.visibility = payload["visibility"]
         new_post.anonymous = payload.get("anonymous", False)
 
+        # automatically add author as a follower
         new_post.followers.add(request.user)
 
         new_post.save()

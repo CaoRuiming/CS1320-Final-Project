@@ -5,8 +5,8 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_POST
 
 from api.decorators import authenticated, handle_nonexistence
-from api.services import PostService, TagService
-from api.models import Course, Post, Tag
+from api.services import TagService
+from api.models import Course, Tag
 
 
 class TagView(View):
@@ -23,11 +23,17 @@ class TagView(View):
         ):
             tag = Tag.objects.get(id=tag_id)
             user = request.user
+            is_student = user in tag.course.students.all()
             is_instructor = user in tag.course.instructors.all()
-            if request.method == "GET":
+
+            # any enrolled student or instructor can view tags
+            if request.method == "GET" and (is_student or is_instructor):
                 return view(request, course_id, tag_id, *args, **kwargs)
-            elif request.method in ["PATCH", "DELETE"] and is_instructor:
+            
+            # only instructors can update or delete tags
+            if request.method in ["PATCH", "DELETE"] and is_instructor:
                 return view(request, course_id, tag_id, *args, **kwargs)
+
             return HttpResponse("Unauthorized", status=401)
 
         return decorated_view

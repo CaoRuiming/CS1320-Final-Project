@@ -24,8 +24,12 @@ class CourseView(View):
             user = request.user
             is_student = user in course.students.all()
             is_instructor = user in course.instructors.all()
+
+            # allow all students and instructors associated with course to view
             if request.method == "GET" and (is_student or is_instructor):
                 return view(request, course_id, *args, **kwargs)
+
+            # only a course's instructors can create, update, or delete a course
             if request.method != "GET" and is_instructor:
                 return view(request, course_id, *args, **kwargs)
             return HttpResponse("Unauthorized", status=401)
@@ -47,20 +51,27 @@ class CourseView(View):
         """Update course data."""
         course = Course.objects.get(id=course_id)
         updated_values = loads(request.body)
+
+        # update the keys that we can directly update
         updateable_keys = ["name", "join_code", "active"]
         for key in updateable_keys:
             if key in updated_values:
                 setattr(course, key, updated_values[key])
+        
+        # add instructors, if specified
         if "add_instructors" in updated_values:
             new_instructors = User.objects.filter(
                 id__in=updated_values["add_instructors"]
             )
             course.instructors.add(*new_instructors)
+        
+        # remove instructors, if specified
         if "remove_instructors" in updated_values:
             ex_instructors = course.instructors.filter(
                 id__in=updated_values["remove_instructors"]
             )
             course.instructors.remove(*ex_instructors)
+
         course.save()
         return HttpResponse(dumps(CourseService.course_to_dict(course)))
 
@@ -93,7 +104,7 @@ class CourseView(View):
         course = Course.objects.get(id=course_id)
         user = request.user
         course.students.remove(user)
-        return HttpResponse(f"Unenrollment successful")
+        return HttpResponse("Unenrollment successful")
 
     @require_GET
     @method_decorator(handle_nonexistence)
@@ -102,6 +113,8 @@ class CourseView(View):
         """Get all posts under course."""
         course = Course.objects.get(id=course_id)
         user = request.user
+
+        # get a list of all posts that user has access to
         posts = []
         for post in course.posts.all():
             if (

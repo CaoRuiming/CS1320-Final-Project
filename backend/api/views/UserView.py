@@ -73,13 +73,15 @@ class UserView(View):
     @require_GET
     @ensure_csrf_cookie
     def csrf(request: HttpRequest) -> HttpResponse:
+        """Generates and sends back a CSRF token (required for POST requests)."""
         return HttpResponse("Success")
 
     @require_POST
     @method_decorator(handle_nonexistence)
     def login(request: HttpRequest) -> HttpResponse:
+        """Logs in the requests user."""
         user = UserService.login(request)
         if user:
-            return HttpResponse("logged in")
+            return HttpResponse("Logged in", status=201)
         else:
-            return HttpResponse("login failed")
+            return HttpResponse("Login failed", status=406)
