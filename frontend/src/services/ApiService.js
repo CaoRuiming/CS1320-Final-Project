@@ -4,7 +4,7 @@ axios.defaults.xsrfHeaderName = "X-CSRFToken";
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.withCredentials = true;
 
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
   baseURL: `${window.location.origin}/api/v0/`,
   timeout: 300000,
 });
@@ -21,15 +21,23 @@ export default class ApiService {
   static async test(options={}) {
     const parameters = { params: { ...options } };
     const result = await axiosInstance.get('/test', parameters);
-    console.log('Retreived results:', result);
-
-    // // testing for login/auth
-    // const csrf = await axiosInstance.get('/csrf');
-    // console.log(csrf);
-    // const login = await axiosInstance.post('/login', {username: 'root', password: 'password'});
-    // const user = await axiosInstance.get('/users/1');
-    // console.log(user);
-
     return result;
+  }
+
+  /**
+   * Retreives CSRF token from API server. Token is automatically stored and
+   * send by Axios. CSRF must be set for POST requests to the API.
+   */
+  static async getCsrf() {
+    await axiosInstance.get('/csrf');
+  }
+
+  /**
+   * Logs in a user given a username and password.
+   * @param {*} username the username (usually email address)
+   * @param {*} password the password
+   */
+  static async login(username, password) {
+    await axiosInstance.post('/login', { username, password });
   }
 }

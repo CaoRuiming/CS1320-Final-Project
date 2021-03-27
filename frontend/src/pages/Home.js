@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import LoginForm from '../components/forms/LoginForm';
 import useStateService from '../services/StateService';
 
 export default function UrlInput(props) {
@@ -16,7 +17,9 @@ export default function UrlInput(props) {
 
 	return (
 		<div>
-			<p>Hello, World!</p>
+			<h1>Discourse</h1>
+			<p>Log in using the form Below:</p>
+			<LoginForm />
 		</div>
 	);
 }
