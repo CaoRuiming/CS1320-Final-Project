@@ -14,7 +14,8 @@ urlpatterns = [
     path("test/", test),
     # User routes
     # Login logout routes handled by django
-    # path('login/$', views.login),
+    path('csrf', UserView.csrf),
+    path('login', UserView.login),
     # path('logout/$', views.logout),
     path("users/create", UserView.create),
     path("users/<int:user_id>", UserView.as_view()),

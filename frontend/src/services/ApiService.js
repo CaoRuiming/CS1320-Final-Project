@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+axios.defaults.xsrfHeaderName = "X-CSRFToken";
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.withCredentials = true;
+
 const axiosInstance = axios.create({
   baseURL: `${window.location.origin}/api/v0/`,
   timeout: 300000,
@@ -18,6 +22,14 @@ export default class ApiService {
     const parameters = { params: { ...options } };
     const result = await axiosInstance.get('/test', parameters);
     console.log('Retreived results:', result);
+
+    // // testing for login/auth
+    // const csrf = await axiosInstance.get('/csrf');
+    // console.log(csrf);
+    // const login = await axiosInstance.post('/login', {username: 'root', password: 'password'});
+    // const user = await axiosInstance.get('/users/1');
+    // console.log(user);
+
     return result;
   }
 }

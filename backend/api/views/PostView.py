@@ -92,7 +92,7 @@ class PostView(View):
         post.delete()
         return HttpResponse("Post successfully deleted")
 
-    @method_decorator(require_POST)
+    @require_POST
     @method_decorator(handle_nonexistence)
     def create(request: HttpRequest, course_id: int) -> HttpResponse:
         """Create a new post."""

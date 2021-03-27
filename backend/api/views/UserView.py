@@ -2,7 +2,8 @@ from json import loads, dumps
 from django.http import HttpRequest, HttpResponse
 from django.views import View
 from django.utils.decorators import method_decorator
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_GET, require_POST
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.contrib.auth.models import User
 
 from api.decorators import authenticated, handle_nonexistence
@@ -56,7 +57,7 @@ class UserView(View):
         user.delete()
         return HttpResponse("User successfully deleted")
 
-    @method_decorator(require_POST)
+    @require_POST
     @method_decorator(handle_nonexistence)
     def create(request: HttpRequest) -> HttpResponse:
         """Create a new user."""
@@ -69,7 +70,12 @@ class UserView(View):
         new_user.save()
         return HttpResponse(f"User successfully created")
 
-    @method_decorator(require_POST)
+    @require_GET
+    @ensure_csrf_cookie
+    def csrf(request: HttpRequest) -> HttpResponse:
+        return HttpResponse("Success")
+
+    @require_POST
     @method_decorator(handle_nonexistence)
     def login(request: HttpRequest) -> HttpResponse:
         user = UserService.login(request)

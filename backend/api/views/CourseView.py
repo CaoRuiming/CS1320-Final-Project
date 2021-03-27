@@ -73,7 +73,7 @@ class CourseView(View):
         course.delete()
         return HttpResponse("Course successfully deleted")
 
-    @method_decorator(require_POST)
+    @require_POST
     @method_decorator(handle_nonexistence)
     @method_decorator(authenticated)
     def join(request: HttpRequest, course_id: int) -> HttpResponse:
@@ -85,7 +85,7 @@ class CourseView(View):
             return HttpResponse(f"Course successfully joined")
         return HttpResponse(f"Incorrect course join code", status=406)
 
-    @method_decorator(require_POST)
+    @require_POST
     @method_decorator(handle_nonexistence)
     @method_decorator(authenticated)
     def leave(request: HttpRequest, course_id: int) -> HttpResponse:
@@ -95,7 +95,7 @@ class CourseView(View):
         course.students.remove(user)
         return HttpResponse(f"Unenrollment successful")
 
-    @method_decorator(require_GET)
+    @require_GET
     @method_decorator(handle_nonexistence)
     @method_decorator(authenticated)
     def get_posts(request: HttpRequest, course_id: int) -> HttpResponse:
@@ -112,7 +112,7 @@ class CourseView(View):
                 posts.append(PostService.post_to_dict(post))
         return HttpResponse(dumps(posts))
 
-    @method_decorator(require_GET)
+    @require_GET
     @method_decorator(handle_nonexistence)
     @method_decorator(authenticated)
     def get_tags(request: HttpRequest, course_id: int) -> HttpResponse:

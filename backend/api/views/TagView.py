@@ -61,7 +61,7 @@ class TagView(View):
         tag.delete()
         return HttpResponse("Tag successfully deleted")
 
-    @method_decorator(require_POST)
+    @require_POST
     @method_decorator(handle_nonexistence)
     def create(request: HttpRequest, course_id: int) -> HttpResponse:
         """Create a new tag."""
