@@ -21,7 +21,7 @@ export default function LoginForm(props) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form id="login-form" onSubmit={handleSubmit}>
       <label for="login-username">Email Address</label>
       <input
         id="login-username"
@@ -37,6 +37,8 @@ export default function LoginForm(props) {
         value={password}
         onChange={e => setPassword(e.target.value)}
         onKeyPress={handleSubmitOnEnter} required></input>
+      
+      <input type="submit" value="Submit"></input>
     </form>
   );
 }

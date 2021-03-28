@@ -24,6 +24,11 @@ class UserService:
         return User.objects.create_user(username, password=password, **kwargs)
 
     @staticmethod
+    def generate_password(length: int = 8):
+        """Returns a randomly generated password."""
+        return get_random_string(length, "abcdefghijklmnopqrstuvwxyz0123456789")
+
+    @staticmethod
     def user_to_dict(user: User) -> Dict[str, Any]:
         """Converts a user model into a Dict for the API to return."""
 

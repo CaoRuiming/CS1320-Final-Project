@@ -30,7 +30,7 @@ class PostView(View):
             # permissions are handled in their respective view functions
             if request.method in ["GET", "PATCH"] and (is_student or is_instructor):
                 return view(request, course_id, post_id, *args, **kwargs)
-            
+
             # only instructors can delete a post
             if request.method == "DELETE" and is_instructor:
                 return view(request, course_id, post_id, *args, **kwargs)

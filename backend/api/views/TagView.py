@@ -29,7 +29,7 @@ class TagView(View):
             # any enrolled student or instructor can view tags
             if request.method == "GET" and (is_student or is_instructor):
                 return view(request, course_id, tag_id, *args, **kwargs)
-            
+
             # only instructors can update or delete tags
             if request.method in ["PATCH", "DELETE"] and is_instructor:
                 return view(request, course_id, tag_id, *args, **kwargs)

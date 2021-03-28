@@ -57,14 +57,14 @@ class CourseView(View):
         for key in updateable_keys:
             if key in updated_values:
                 setattr(course, key, updated_values[key])
-        
+
         # add instructors, if specified
         if "add_instructors" in updated_values:
             new_instructors = User.objects.filter(
                 id__in=updated_values["add_instructors"]
             )
             course.instructors.add(*new_instructors)
-        
+
         # remove instructors, if specified
         if "remove_instructors" in updated_values:
             ex_instructors = course.instructors.filter(

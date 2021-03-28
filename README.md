@@ -78,6 +78,21 @@ At this point, the database is not yet set up to work with the Django app. To ru
 python manage.py migrate
 ```
 
+If you want some example users, courses, posts, and tags to be created for demo purposes, run the following commands in the `backend-shell`:
+
+```
+python manage.py shell     # this enters the django shell, don't include >>> in following commands
+>>> from api.demo import setup
+>>> setup()                # this will print out demo user passwords in order; save them somewhere!
+>>> exit()                 # exit django shell
+```
+
+The process above creates three users:
+- an instructor with the email `josiah_carberry@brown.edu` and the first password returned by `setup()`
+- a student with the email `blueno@brown.edu` and the second password returned by `setup()`
+- a student with the email `random@brown.edu` and the third password returned by `setup()`
+
+
 Once migrations are done, you can exit the backend shell with the `exit` command.
 
 You will need to run migrations once during setup and every time when models in the Django app are changed. For more information, read the [Django documentation on migrations](https://docs.djangoproject.com/en/3.1/topics/migrations/).
@@ -142,4 +157,5 @@ If the value of `DB_NAME` in `.env` is not "app", then the `psql` command from b
 
 In the event something goes terribly wrong and you want to start from a clean slate again:
 - shut down all of the containers through the command `docker-compose down -v` to wipe PostgreSQL data
+    - alternatively, you could manually delete the database data stored by Docker by running `docker volume rm <name of project directory>_db_data`
 - find the image id for this project's backend container image through `docker images` and then run `docker rmi <backend-image-id>` to delete it
