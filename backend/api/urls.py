@@ -2,7 +2,7 @@ from django.urls import path
 from django.http import HttpRequest, HttpResponse
 from . import views
 
-from api.views import UserView, CourseView, PostView, TagView
+from api.views import UserView, CourseView, PostView, TagView, SearchView
 
 
 def test(request: HttpRequest):
@@ -33,5 +33,5 @@ urlpatterns = [
     path("courses/<int:course_id>/tags/<int:tag_id>", TagView.as_view()),
     path("courses/<int:course_id>/tags", CourseView.get_tags),
     # # Search routes
-    # path("courses/<int:course_id>/search", views.search),
+    path("courses/<int:course_id>/search", SearchView.as_view()),
 ]

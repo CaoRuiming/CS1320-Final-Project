@@ -125,17 +125,18 @@ class PostService:
         self.post = Post.objects.get(id=post_id)
 
     @staticmethod
-    def post_to_dict(post: Post) -> Dict[str, Any]:
+    def post_to_dict(post: Post, is_instructor: bool = False) -> Dict[str, Any]:
         """Converts a post model into a Dict for the API to return."""
 
         def user_to_dict(u: User, anon: bool = False) -> Dict:
+            hide_user = anon and not is_instructor
             return {
                 "id": u.id,
-                "first_name": "Anonymous" if anon else u.first_name,
-                "last_name": "User" if anon else u.last_name,
-                "email": "" if anon else u.email,
+                "first_name": "Anonymous" if hide_user else u.first_name,
+                "last_name": "User" if hide_user else u.last_name,
+                "email": "" if hide_user else u.email,
             }
-        
+
         def course_to_dict(c: Course) -> Dict[str, Union[int, str]]:
             return {
                 "id": c.id,
