@@ -15,6 +15,7 @@ export function StateServiceContextProvider(props) {
 	// example value that is store in StateService
 	const [example, setExample] = useState(undefined);
 	const [user, setUser] = useState(null);
+	const [searchString, setSearchString] = useState('');
 
 	useEffect(() => {
 		ApiService.test();
@@ -25,10 +26,12 @@ export function StateServiceContextProvider(props) {
 		state: {
 			example,
 			user,
+			searchString,
 		},
 		actions: {
 			setExample,
 			setUser,
+			setSearchString,
 		},
 	};
 

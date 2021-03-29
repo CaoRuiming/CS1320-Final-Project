@@ -26,8 +26,8 @@ export default class ApiService {
   static async test(options={}) {
     const parameters = { params: { ...options } };
     const result = await axiosInstance.get('/test', parameters);
-   // const search_result = await axiosInstance.post('/courses/1/search', {'query' : 'question'});
-    //console.log(search_result);
+    const search_result = await ApiService.search('1', 'question')
+    console.log(search_result);
     return result;
   }
 
@@ -46,7 +46,17 @@ export default class ApiService {
    * @returns user object of logged in user
    */
   static async login(username, password) {
-    const res = await axiosInstance.post('/login', { username, password })
+    const res = await axiosInstance.post('/login', { username, password });
+    return res.data;
+  }
+
+  
+  /**
+   * Logout current user  
+   * @returns Success messages, otherwise throws error 
+   */
+   static async logout() {
+    const res = await axiosInstance.post('/logout');
     return res.data;
   }
 
@@ -165,6 +175,19 @@ export default class ApiService {
   static async createTag(courseId, newTagData={}) {
     const url = `/courses/${courseId}/tags/create`;
     const res = await axios.post(url, newTagData)
+    return res.data;
+  }
+
+  /**
+   * Given a string to search, find posts with that contain string(so just a name e.g. {name: 'example'}), creates
+   * new tag object.
+   * @param {Integer|String} courseId ID of course as string or int
+   * @param {String} searchTerm mapping of new tag properties with values
+   * @returns results from search
+   */
+   static async search(courseId, searchTerm) {
+    const url = `/courses/${courseId}/search`;
+    const res = await axiosInstance.post(url, {'query' : searchTerm})
     return res.data;
   }
 }
