@@ -1,0 +1,8 @@
+.feed {
+  list-style-type: none;
+  padding: 0;
+}
+
+.feedItem {
+  border: 1px solid black;
+}

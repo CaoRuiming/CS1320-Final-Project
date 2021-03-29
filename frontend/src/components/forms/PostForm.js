@@ -48,8 +48,8 @@ export default function PostForm({ post }) {
   };
 
   return (
-    <form id="post-form" class={formStyles.form} onSubmit={handleSubmit}>
-      <label for="post-title">Title</label>
+    <form id="post-form" className={formStyles.form} onSubmit={handleSubmit}>
+      <label htmlFor="post-title">Title</label>
       <input
         id="post-title"
         type="text"
@@ -57,7 +57,7 @@ export default function PostForm({ post }) {
         placeholder={`${type === POST_TYPE.NOTE ? 'Note' : 'Question'} Title`}
         onChange={e => setTitle(e.target.value)} required></input>
 
-      <label for="post-content">Content</label>
+      <label htmlFor="post-content">Content</label>
       <textarea
         id="post-content"
         value={content}
