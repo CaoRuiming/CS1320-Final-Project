@@ -49,6 +49,16 @@ export default class ApiService {
   }
 
   /**
+   * Creates new user account using given data.
+   * @param {Object} newUserData mapping of new post properties with values
+   * @returns newly created user
+   */
+  static async createUser(newUserData) {
+    const res = await axiosInstance.post('/users/create', newUserData);
+    return res.data;
+  }
+
+  /**
    * Return course data given an ID.
    * @param {Integer|String} courseId ID of course as string or int
    * @returns course object corresponding to courseId
@@ -152,6 +162,7 @@ export default class ApiService {
    */
   static async createTag(courseId, newTagData={}) {
     const url = `/courses/${courseId}/tags/create`;
-    return await axios.post(url, newTagData);
+    const res = await axios.post(url, newTagData)
+    return res.data;
   }
 }

@@ -135,6 +135,13 @@ class PostService:
                 "last_name": "User" if anon else u.last_name,
                 "email": "" if anon else u.email,
             }
+        
+        def course_to_dict(c: Course) -> Dict[str, Union[int, str]]:
+            return {
+                "id": c.id,
+                "name": c.name,
+                "active": c.active,
+            }
 
         def tag_to_dict(t: Tag) -> Dict[str, Union[int, str]]:
             return {
@@ -155,6 +162,7 @@ class PostService:
             "author": user_to_dict(post.author, post.anonymous),
             "parent": PostService.post_to_dict(post.parent) if post.parent else None,
             "children": [PostService.post_to_dict(x) for x in post.child_posts.all()],
+            "course": course_to_dict(post.course),
         }
         return result
 

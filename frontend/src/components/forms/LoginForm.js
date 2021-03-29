@@ -37,6 +37,7 @@ export default function LoginForm() {
         id="login-username"
         type="email"
         value={username}
+        placeholder="Email Address"
         onChange={e => setUsername(e.target.value)}
         onKeyPress={handleSubmitOnEnter} required></input>
 
@@ -45,6 +46,7 @@ export default function LoginForm() {
         id="login-password"
         type="password"
         value={password}
+        placeholder="Password"
         onChange={e => setPassword(e.target.value)}
         onKeyPress={handleSubmitOnEnter} required></input>
       
