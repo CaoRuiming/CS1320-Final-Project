@@ -5,18 +5,25 @@ export default function LoginForm(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-      ApiService.login(username, password);
+      await ApiService.login(username, password);
     } catch (error) {
-      console.error('login failed');
+      const status = error.response?.status;
+      if (status === 406) {
+        console.error('incorrect login credentials');
+      } else {
+        console.error('login failed for unknown reason', error);
+      }
     }
     setUsername('');
     setPassword('');
+    return false;
   };
   const handleSubmitOnEnter = (event) => {
     if (event.key === 'Enter') {
-      handleSubmit();
+      handleSubmit(event);
     }
   };
 

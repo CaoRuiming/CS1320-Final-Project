@@ -38,6 +38,6 @@ export default class ApiService {
    * @param {*} password the password
    */
   static async login(username, password) {
-    await axiosInstance.post('/login', { username, password });
+    return axiosInstance.post('/login', { username, password });
   }
 }
