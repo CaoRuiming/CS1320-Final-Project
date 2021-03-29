@@ -26,8 +26,8 @@ export default class ApiService {
   static async test(options={}) {
     const parameters = { params: { ...options } };
     const result = await axiosInstance.get('/test', parameters);
-    const search_result = await axiosInstance.post('/courses/1/search', {'query' : 'question'});
-    console.log(search_result);
+   // const search_result = await axiosInstance.post('/courses/1/search', {'query' : 'question'});
+    //console.log(search_result);
     return result;
   }
 

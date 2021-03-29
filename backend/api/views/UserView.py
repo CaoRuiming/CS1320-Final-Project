@@ -85,3 +85,9 @@ class UserView(View):
             return HttpResponse(dumps(UserService.user_to_dict(user)), status=201)
         else:
             return HttpResponse(dumps(None), status=406)
+
+    @method_decorator(handle_nonexistence)
+    def logout(request: HttpRequest) -> HttpResponse:
+        """Logout the requests user."""
+        UserService.logout(request)
+        return HttpResponse("Logout Successful")

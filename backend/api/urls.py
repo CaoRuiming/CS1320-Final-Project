@@ -16,7 +16,7 @@ urlpatterns = [
     # Login logout routes handled by django
     path("csrf", UserView.csrf),
     path("login", UserView.login),
-    # path('logout/$', views.logout),
+    path("logout", UserView.logout),
     path("users/create", UserView.create),
     path("users/<int:user_id>", UserView.as_view()),
     # Courses routes
