@@ -107,8 +107,8 @@ class CourseView(View):
         return HttpResponse("Unenrollment successful")
 
     @require_GET
-    @method_decorator(handle_nonexistence)
-    @method_decorator(authenticated)
+    @handle_nonexistence
+    @authenticated
     def get_posts(request: HttpRequest, course_id: int) -> HttpResponse:
         """Get all posts under course."""
         course = Course.objects.get(id=course_id)
@@ -126,8 +126,8 @@ class CourseView(View):
         return HttpResponse(dumps(posts))
 
     @require_GET
-    @method_decorator(handle_nonexistence)
-    @method_decorator(authenticated)
+    @handle_nonexistence
+    @authenticated
     def get_tags(request: HttpRequest, course_id: int) -> HttpResponse:
         """Get all tags under course."""
         course = Course.objects.get(id=course_id)

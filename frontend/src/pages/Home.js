@@ -18,12 +18,12 @@ export default function UrlInput(props) {
 	}, []);
 
 	return (
-		<div>
+		<main>
 			<h1>Discourse</h1>
 			<p>Log in using the form below:</p>
 			<LoginForm />
 			<p>Sign up for a new account using the form below:</p>
 			<SignUpForm />
-		</div>
+		</main>
 	);
 }

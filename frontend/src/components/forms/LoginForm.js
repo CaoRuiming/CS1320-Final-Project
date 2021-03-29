@@ -32,8 +32,8 @@ export default function LoginForm() {
   };
 
   return (
-    <form id="login-form" class={formStyles.form} onSubmit={handleSubmit}>
-      <label for="login-username">Email Address</label>
+    <form id="login-form" className={formStyles.form} onSubmit={handleSubmit}>
+      <label htmlFor="login-username">Email Address</label>
       <input
         id="login-username"
         type="email"
@@ -42,7 +42,7 @@ export default function LoginForm() {
         onChange={e => setUsername(e.target.value)}
         onKeyPress={handleSubmitOnEnter} required></input>
 
-      <label for="login-password">Password</label>
+      <label htmlFor="login-password">Password</label>
       <input
         id="login-password"
         type="password"

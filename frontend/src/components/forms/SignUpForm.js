@@ -36,8 +36,8 @@ export default function SignUpForm() {
   };
 
   return (
-    <form id="sign-up-form" class={formStyles.form} onSubmit={handleSubmit}>
-      <label for="sign-up-first-name">First Name</label>
+    <form id="sign-up-form" className={formStyles.form} onSubmit={handleSubmit}>
+      <label htmlFor="sign-up-first-name">First Name</label>
       <input
         id="sign-up-first-name"
         type="text"
@@ -45,7 +45,7 @@ export default function SignUpForm() {
         onChange={e => setFirstName(e.target.value)}
         onKeyPress={handleSubmitOnEnter} required></input>
 
-      <label for="sign-up-last-name">Last Name</label>
+      <label htmlFor="sign-up-last-name">Last Name</label>
       <input
         id="sign-up-last-name"
         type="text"
