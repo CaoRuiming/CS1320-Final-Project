@@ -65,10 +65,10 @@ class UserView(View):
         new_user = UserService.create_user(
             username=payload["username"], password=payload["password"]
         )
-        if payload["email"]:
+        if payload.get("email", False):
             new_user.email = payload["email"]
         new_user.save()
-        return HttpResponse(f"User successfully created")
+        return HttpResponse(dumps(UserService.user_to_dict(new_user)), status=201)
 
     @require_GET
     @ensure_csrf_cookie
