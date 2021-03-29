@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import ApiService from '../../services/ApiService';
+import useStateService from '../../services/StateService';
 
-export default function LoginForm(props) {
+export default function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { actions: { setUser } } = useStateService();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await ApiService.login(username, password);
+      const user = await ApiService.login(username, password);
+      setUser(user); // save data of logged in user to StateService
     } catch (error) {
       const status = error.response?.status;
       if (status === 406) {

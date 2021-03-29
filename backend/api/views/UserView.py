@@ -82,6 +82,6 @@ class UserView(View):
         """Logs in the requests user."""
         user = UserService.login(request)
         if user:
-            return HttpResponse("Logged in", status=201)
+            return HttpResponse(dumps(UserService.user_to_dict(user)), status=201)
         else:
-            return HttpResponse("Login failed", status=406)
+            return HttpResponse(dumps(None), status=406)
