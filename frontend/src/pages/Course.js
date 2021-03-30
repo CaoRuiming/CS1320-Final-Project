@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import PostFeed from '../components/PostFeed';
+import PostView from '../components/PostView';
 import ApiService from '../services/ApiService';
 
 export default function Course() {
@@ -31,6 +32,7 @@ export default function Course() {
   return (
     <main>
       <PostFeed courseId={courseId} />
+      <PostView />
     </main>
   );
 }
