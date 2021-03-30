@@ -20,6 +20,9 @@ class UserSettings(models.Model):
     notifications = models.IntegerField(
         choices=NotificationSetting.choices, default=NotificationSetting.FOLLOWED_ONLY
     )
+    pronouns = models.CharField(max_length=50, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 class Course(models.Model):
@@ -34,6 +37,8 @@ class Course(models.Model):
     students = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name="student_courses"
     )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 class Post(models.Model):
@@ -79,6 +84,8 @@ class Post(models.Model):
     followers = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name="followed_posts"
     )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 class Tag(models.Model):
@@ -86,3 +93,5 @@ class Tag(models.Model):
 
     name = models.CharField(max_length=50)
     course = models.ForeignKey("Course", on_delete=models.CASCADE, related_name="tags")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
