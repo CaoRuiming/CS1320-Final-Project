@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Main from './pages/Main';
-import './App.css';
+import './styles/App.css';
 import { BrowserRouter } from "react-router-dom";
 import { StateServiceContextProvider } from './services/StateService';
 import ApiService from './services/ApiService';

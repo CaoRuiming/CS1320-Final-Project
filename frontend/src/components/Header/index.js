@@ -1,23 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SearchForm from '../forms/SearchForm';
-import headerStyles from './headerStyles.module.css';
+import './styles.scss';
+
 
 export default function Header() {
 
 	return (
 		<header>
-			<nav id="navbar" className={headerStyles.navBar}>
-				<div id="navLinks" className={headerStyles.navLinks}>
-					<h1 id="discourseHeader" className={headerStyles.discourseHeader}>Discourse</h1>
-						<a id="profileLink" className={headerStyles.profileLink} href="/"> Profile</a> 
-						<a id="coursesLink" className={headerStyles.coursesLink} href="/"> Courses</a>
+			<nav id="navbar">
+				<div>
+					<ul>
+						<li><h1 id="header-logo" className="logo">Discourse</h1></li>
+						<li><Link href="/profile"> Profile</Link></li>
+						<li><Link href="/courses"> Courses</Link></li>
+					</ul>
 				</div>
-				<SearchForm></SearchForm>
-				
-				<button> Make a Post </button>
+				<div>
+					<SearchForm />
+					<button>New Post</button>
+				</div>
 			</nav>
 		</header>
 	);
 }
-// Search Bar, Header 
-/** LOGO, Profile Button, Search Bar, New Post  */

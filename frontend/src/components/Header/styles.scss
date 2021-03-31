@@ -1,0 +1,34 @@
+@mixin vertical-center {
+    display: flex;
+    align-items: center;
+}
+
+nav {
+    @include vertical-center();
+    justify-content: space-between;
+    height: 40px;
+    width: 100%; 
+    border-bottom-color: #4B9DA3;
+    border-bottom-width: 2px;
+    font-family: 'Source Sans Pro';
+
+    & > div {
+        @include vertical-center();
+    }
+    
+    #header-logo {
+        font-size: 20px; 
+        margin: 0px;
+    }
+
+    ul {
+        @include vertical-center();
+        list-style: none;
+        padding: 0;
+        display: flex;            
+
+        li + li {
+            margin-left: 20px;
+        }
+    }
+}
