@@ -164,6 +164,8 @@ class PostService:
             "parent": PostService.post_to_dict(post.parent) if post.parent else None,
             "children": [PostService.post_to_dict(x) for x in post.child_posts.all()],
             "course": course_to_dict(post.course),
+            "created_at": str(post.created_at),
+            "updated_at": str(post.updated_at),
         }
         return result
 
