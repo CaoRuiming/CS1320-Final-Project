@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import PostFeed from '../components/PostFeed';
-import PostView from '../components/PostView';
-import ApiService from '../services/ApiService';
+import PostFeed from '../../components/PostFeed';
+import PostView from '../../components/PostView';
+import ApiService from '../../services/ApiService';
+import styles from './courseStyles.module.css';
 
 export default function Course() {
-  const { courseId } = useParams();
+  const { courseId, postId } = useParams();
   const [course, setCourse] = useState(null);
   const [course404, setCourse404] = useState(false);
 
@@ -25,14 +26,19 @@ export default function Course() {
 
   if (course404) {
     return (
-      <main><h1>Course not found!</h1></main>
+      <main><h2>Course not found!</h2></main>
     );
   }
 
   return (
-    <main>
-      <PostFeed courseId={courseId} />
-      <PostView />
+    <main className={styles.main}>
+      <section className={styles.leftSection}>
+        <h2 className="sr-only">Course Posts</h2>
+        <PostFeed />
+      </section>
+      <section className={styles.rightSection}>
+        {postId ? <PostView /> : null}
+      </section>
     </main>
   );
 }
