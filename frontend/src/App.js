@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import Main from './pages/Main';
-import './styles/App.css';
 import { BrowserRouter } from "react-router-dom";
 import { StateServiceContextProvider } from './services/StateService';
 import ApiService from './services/ApiService';
+import './styles/App.scss';
 
 
 function App() {

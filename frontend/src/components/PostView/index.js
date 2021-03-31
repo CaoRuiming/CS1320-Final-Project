@@ -13,7 +13,7 @@ export default function PostView() {
         setPostData(await ApiService.getPost(courseId, postId));
       } catch (error) {
         const status = error.response?.status;
-        if (status == 404) {
+        if (status === 404) {
           setPost404(true);
         }
       }

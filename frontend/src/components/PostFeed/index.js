@@ -42,7 +42,7 @@ export default function PostFeed() {
       }
     }   
     searchPosts();
-  }, [searchString] );
+  }, [courseId, searchString] );
  
   const filteredPosts = (searchString ? searchedPosts : posts);
   const renderedPosts = filteredPosts.map(post => {
@@ -71,9 +71,9 @@ export default function PostFeed() {
 
   return (
     <ul id="post-feed" role="feed" className={feedStyles.feed}>
-     { searchString ? <li> 
-        <h2>Showing results: <emph> {searchString} </emph>  </h2> 
-      </li> : null }
+      {searchString ? <li> 
+        <h2>Showing results: <emph>{searchString}</emph></h2> 
+      </li> : null}
       {renderedPosts || null}
     </ul>
   );

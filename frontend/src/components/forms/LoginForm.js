@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ApiService from '../../services/ApiService';
 import useStateService from '../../services/StateService';
-import formStyles from './formStyles.module.css';
+import './style.scss';
 
 export default function LoginForm() {
   const [username, setUsername] = useState('');
@@ -32,7 +32,7 @@ export default function LoginForm() {
   };
 
   return (
-    <form id="login-form" className={formStyles.form} onSubmit={handleSubmit}>
+    <form id="login-form" onSubmit={handleSubmit}>
       <label htmlFor="login-username">Email Address</label>
       <input
         id="login-username"

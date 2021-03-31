@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ApiService from '../../services/ApiService';
-import formStyles from './formStyles.module.css';
+import './style.scss';
 
 export default function SignUpForm() {
   const [firstName, setFirstName] = useState('');
@@ -18,7 +18,7 @@ export default function SignUpForm() {
         username: email,
         password,
       };
-      const user = await ApiService.createUser(newUserData);
+      await ApiService.createUser(newUserData);
     } catch (error) {
       const status = error.response?.status;
       console.error(`request failed with status code of ${status}`);
@@ -36,7 +36,7 @@ export default function SignUpForm() {
   };
 
   return (
-    <form id="sign-up-form" className={formStyles.form} onSubmit={handleSubmit}>
+    <form id="sign-up-form" onSubmit={handleSubmit}>
       <label htmlFor="sign-up-first-name">First Name</label>
       <input
         id="sign-up-first-name"
