@@ -26,8 +26,6 @@ export default class ApiService {
   static async test(options={}) {
     const parameters = { params: { ...options } };
     const result = await axiosInstance.get('/test', parameters);
-    const search_result = await ApiService.search('1', 'question')
-    console.log(search_result);
     return result;
   }
 

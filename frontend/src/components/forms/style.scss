@@ -1,0 +1,9 @@
+@import '../../styles/variables.scss';
+
+input[type="text"], input[type="search"] {
+  border: 1px solid #8E8E8E;
+  border-radius: 5px;
+  height: 30px;
+  padding: 5px;
+  background-color: hsl(171, 18, 95);
+}

@@ -15,57 +15,158 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Course',
+            name="Course",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('active', models.BooleanField(default=True)),
-                ('join_code', models.CharField(blank=True, max_length=50)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('instructors', models.ManyToManyField(related_name='instructor_courses', to=settings.AUTH_USER_MODEL)),
-                ('students', models.ManyToManyField(related_name='student_courses', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("active", models.BooleanField(default=True)),
+                ("join_code", models.CharField(blank=True, max_length=50)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "instructors",
+                    models.ManyToManyField(
+                        related_name="instructor_courses", to=settings.AUTH_USER_MODEL
+                    ),
+                ),
+                (
+                    "students",
+                    models.ManyToManyField(
+                        related_name="student_courses", to=settings.AUTH_USER_MODEL
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='UserSettings',
+            name="UserSettings",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('notifications', models.IntegerField(choices=[(0, 'None'), (1, 'All'), (2, 'Followed Only')], default=2)),
-                ('pronouns', models.CharField(blank=True, max_length=50)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='user', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "notifications",
+                    models.IntegerField(
+                        choices=[(0, "None"), (1, "All"), (2, "Followed Only")],
+                        default=2,
+                    ),
+                ),
+                ("pronouns", models.CharField(blank=True, max_length=50)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="user",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Tag',
+            name="Tag",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('course', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='tags', to='api.course')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "course",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="tags",
+                        to="api.course",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Post',
+            name="Post",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=100)),
-                ('content', models.TextField()),
-                ('instructor_answer', models.TextField(blank=True)),
-                ('student_answer', models.TextField(blank=True)),
-                ('type', models.IntegerField(choices=[(0, 'Note'), (1, 'Question')], default=1)),
-                ('visibility', models.IntegerField(choices=[(0, 'Private'), (1, 'Public')], default=1)),
-                ('anonymous', models.BooleanField(default=True)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('author', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='posts', to=settings.AUTH_USER_MODEL)),
-                ('course', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='posts', to='api.course')),
-                ('followers', models.ManyToManyField(related_name='followed_posts', to=settings.AUTH_USER_MODEL)),
-                ('parent', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='child_posts', to='api.post')),
-                ('tags', models.ManyToManyField(related_name='posts', to='api.Tag')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=100)),
+                ("content", models.TextField()),
+                ("instructor_answer", models.TextField(blank=True)),
+                ("student_answer", models.TextField(blank=True)),
+                (
+                    "type",
+                    models.IntegerField(
+                        choices=[(0, "Note"), (1, "Question")], default=1
+                    ),
+                ),
+                (
+                    "visibility",
+                    models.IntegerField(
+                        choices=[(0, "Private"), (1, "Public")], default=1
+                    ),
+                ),
+                ("anonymous", models.BooleanField(default=True)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "author",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="posts",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "course",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="posts",
+                        to="api.course",
+                    ),
+                ),
+                (
+                    "followers",
+                    models.ManyToManyField(
+                        related_name="followed_posts", to=settings.AUTH_USER_MODEL
+                    ),
+                ),
+                (
+                    "parent",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="child_posts",
+                        to="api.post",
+                    ),
+                ),
+                ("tags", models.ManyToManyField(related_name="posts", to="api.Tag")),
             ],
         ),
     ]

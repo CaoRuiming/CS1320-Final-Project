@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ApiService from '../../services/ApiService';
 import { VISIBILITY, POST_TYPE } from '../../utils/constants';
-import formStyles from './formStyles.module.css';
+import './style.scss';
 
 
 export default function PostForm({ post }) {
@@ -48,7 +48,7 @@ export default function PostForm({ post }) {
   };
 
   return (
-    <form id="post-form" className={formStyles.form} onSubmit={handleSubmit}>
+    <form id="post-form" onSubmit={handleSubmit}>
       <label htmlFor="post-title">Title</label>
       <input
         id="post-title"

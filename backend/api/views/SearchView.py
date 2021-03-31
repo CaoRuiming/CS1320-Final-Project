@@ -44,8 +44,15 @@ class SearchView(View):
             )
             search_results = course.posts.filter(query_obj).all()
             is_instructor = request.user in course.instructors.all()
-            result = [
-                PostService.post_to_dict(x, is_instructor=is_instructor)
-                for x in search_results
-            ]
+
+            for post in search_results:
+                if (
+                    post.visibility == Post.Visibility.PUBLIC
+                    or post.author == request.user
+                    or request.user in post.course.instructors.all()
+                ):
+                    result.append(
+                        PostService.post_to_dict(post, is_instructor=is_instructor)
+                    )
+
         return HttpResponse(dumps(result))

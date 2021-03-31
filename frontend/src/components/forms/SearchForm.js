@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import useStateService from '../../services/StateService';
-import formStyles from './formStyles.module.css';
+import './style.scss';
 
 export default function SearchForm() {
   const [search , setSearch] = useState(''); 
@@ -21,8 +21,8 @@ export default function SearchForm() {
   };
 
   return (
-    <form role="search" id="search-form" className={formStyles.form} onSubmit={handleSubmit}>
-      <label htmlFor="search-term">Search</label>
+    <form role="search" id="search-form" onSubmit={handleSubmit}>
+      <label className="sr-only" htmlFor="search-term">Search</label>
       <input
         id="search-term"
         type="search"
@@ -30,7 +30,6 @@ export default function SearchForm() {
         placeholder="Search"
         onChange={e => setSearch(e.target.value)}
         onKeyPress={handleSubmitOnEnter} required></input>
-
     </form>
   );
 }

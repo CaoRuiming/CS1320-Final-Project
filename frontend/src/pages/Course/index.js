@@ -22,7 +22,7 @@ export default function Course() {
       }
     };
     getCourse();
-  }, []);
+  }, [courseId]);
 
   if (course404) {
     return (

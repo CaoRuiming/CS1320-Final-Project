@@ -1,0 +1,56 @@
+@import '../../styles/variables.scss';
+
+@mixin vertical-center {
+    display: flex;
+    align-items: center;
+}
+
+header {
+    border-bottom: 2px solid #4B9DA3;
+
+    nav {
+        @include vertical-center();
+        justify-content: space-between;
+        height: 50px;
+        width: 100%;
+        font-family: 'Source Sans Pro';
+    
+        & > div {
+            @include vertical-center();
+        }
+        
+        #header-logo {
+            font-size: 25px; 
+            margin: 0px;
+            color: $color-e;
+        }
+    
+        ul {
+            @include vertical-center();
+            list-style: none;
+            padding: 0;
+            display: flex;            
+    
+            li + li {
+                margin-left: 20px;
+            }
+
+            a {
+                text-decoration: none;
+                color: rgb(108, 131, 137);
+                font-weight: bold;
+            }
+        }
+
+        #new-post-button {
+            margin-left: 20px;
+            border: 1px solid #8E8E8E;
+            border-radius: 5px;
+            height: 30px;
+            padding: 5px;
+            background-color: $color-f;
+            color: white;
+            font-weight: bold;
+        }
+    }
+}
