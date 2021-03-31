@@ -12,6 +12,7 @@ export default function Header() {
 			
 				<a href="/" > Courses</a>
 
+				
 				<SearchForm></SearchForm>
 				
 				<button> Make a Post </button>

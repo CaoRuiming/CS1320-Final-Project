@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import ApiService from '../../services/ApiService';
+import useStateService from '../../services/StateService';
 import feedStyles from './feedStyles.module.css';
 
 export default function PostFeed({ courseId }) {
   const [posts, setPosts] = useState([]);
   const [posts404, setPosts404] = useState(false);
+  const { state: { searchString } } = useStateService();
+  const [searchedPosts, setSearchPosts] = useState([]);
+
 
   useEffect(() => {
     const refreshPosts = async () => {
@@ -20,7 +24,26 @@ export default function PostFeed({ courseId }) {
     refreshPosts();
   }, [courseId]);
 
-  const renderedPosts = posts.map(post => {
+
+  useEffect(()=> {
+    const searchPosts = async () => {
+      try{
+        if (searchString) {
+          setSearchPosts(await ApiService.search(courseId, searchString));
+          console.log('changed');
+        }
+      } catch (error) {
+        const status = error.response?.status;
+        if (status === 404) {
+          setPosts404(true);
+        }
+      }
+    }   
+    searchPosts();
+  }, [searchString] );
+ 
+  const filteredPosts = (searchString ? searchedPosts : posts);
+  const renderedPosts = filteredPosts.map(post => {
     const { id, title, content } = post;
     return (
       <li key={`post-${id}`} className={feedStyles.feedItem}>
@@ -42,6 +65,9 @@ export default function PostFeed({ courseId }) {
 
   return (
     <ul id="post-feed" role="feed" className={feedStyles.feed}>
+     { searchString ? <li> 
+        <h2>Showing results: <emph> {searchString} </emph>  </h2> 
+      </li> : null }
       {renderedPosts || null}
     </ul>
   );
