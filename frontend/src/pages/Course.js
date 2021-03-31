@@ -5,7 +5,7 @@ import PostView from '../components/PostView';
 import ApiService from '../services/ApiService';
 
 export default function Course() {
-  const { courseId } = useParams();
+  const { courseId, postId } = useParams();
   const [course, setCourse] = useState(null);
   const [course404, setCourse404] = useState(false);
 
@@ -25,14 +25,14 @@ export default function Course() {
 
   if (course404) {
     return (
-      <main><h1>Course not found!</h1></main>
+      <main><h2>Course not found!</h2></main>
     );
   }
 
   return (
     <main>
-      <PostFeed courseId={courseId} />
-      <PostView />
+      <PostFeed />
+      {postId ? <PostView /> : null}
     </main>
   );
 }
