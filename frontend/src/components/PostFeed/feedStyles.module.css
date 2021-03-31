@@ -5,6 +5,24 @@
 
 .feedItem {
   border: 1px solid black;
+  display: flex; 
+  flex-direction: column; 
+  width: 100%;
+}
+
+.feedItemTitle{ 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.tags{ 
+  display: flex;
+  width:auto; 
+  height: 20%; 
+  background-color: pink; 
+
 }
 
 .active {

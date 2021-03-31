@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ApiService from '../../services/ApiService';
 import feedStyles from './feedStyles.module.css';
+import Tag from '../../components/Tag';
+
 
 export default function PostFeed() {
   const { courseId, postId } = useParams();
@@ -28,10 +30,19 @@ export default function PostFeed() {
     const classes = `${feedStyles.feedItem} ${activeClass}`;
     return (
       <li key={`post-${id}`} className={classes}>
+
         <Link to={`/courses/${courseId}/posts/${id}`}>
           <article tabIndex="0">
-            <h2>{title}</h2>
-            <p>{content.substring(0, 50)}</p>
+           <div className={feedStyles.feedItemTitle}>
+             <h2>{title}</h2>
+             <p>current date</p>
+            </div>
+            <div>
+              <p>{content.substring(0, 50)}</p>
+            </div>
+            <div id="tags" className={feedStyles.tags}>
+              
+            </div>
           </article>
         </Link>
       </li>
