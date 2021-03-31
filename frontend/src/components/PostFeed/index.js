@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import ApiService from '../../services/ApiService';
 import useStateService from '../../services/StateService';
 import feedStyles from './feedStyles.module.css';
 
-export default function PostFeed({ courseId }) {
+export default function PostFeed() {
+  const { courseId, postId } = useParams();
   const [posts, setPosts] = useState([]);
   const [posts404, setPosts404] = useState(false);
   const { state: { searchString } } = useStateService();
@@ -45,12 +47,16 @@ export default function PostFeed({ courseId }) {
   const filteredPosts = (searchString ? searchedPosts : posts);
   const renderedPosts = filteredPosts.map(post => {
     const { id, title, content } = post;
+    const activeClass = id.toString() === postId ? feedStyles.active : '';
+    const classes = `${feedStyles.feedItem} ${activeClass}`;
     return (
-      <li key={`post-${id}`} className={feedStyles.feedItem}>
-        <article tabIndex="0">
-          <h2>{title}</h2>
-          <p>{content.substring(0, 50)}</p>
-        </article>
+      <li key={`post-${id}`} className={classes}>
+        <Link to={`/courses/${courseId}/posts/${id}`}>
+          <article tabIndex="0">
+            <h2>{title}</h2>
+            <p>{content.substring(0, 50)}</p>
+          </article>
+        </Link>
       </li>
     );
   });

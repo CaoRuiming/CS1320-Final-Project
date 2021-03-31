@@ -6,3 +6,7 @@
 .feedItem {
   border: 1px solid black;
 }
+
+.active {
+  background-color: rgb(233, 233, 233);
+}

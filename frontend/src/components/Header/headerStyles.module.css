@@ -1,4 +1,21 @@
 
 .navBar {
     display: flex;
+    height: 10vh; 
+    width: auto; 
+    border-bottom-color: "4B9DA3";
+    border-bottom-width: 2px; 
+    font-family: 'Source Sans Pro';
+}
+
+.discourseHeader { 
+    font-size: 72px; 
+    margin: 0px; 
+}
+
+.navLinks{ 
+    width: 40%; 
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between;
 }
