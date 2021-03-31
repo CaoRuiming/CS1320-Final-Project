@@ -7,11 +7,11 @@ export default function Header() {
 	return (
 		<header>
 			<nav id="navbar" className={headerStyles.navBar}>
-			 	<h1>Discourse</h1>
-				<a href="/"> Profile</a> 
-			
-				<a href="/" > Courses</a>
-
+				<div id="navLinks" className={headerStyles.navLinks}>
+					<h1 id="discourseHeader" className={headerStyles.discourseHeader}>Discourse</h1>
+						<a id="profileLink" className={headerStyles.profileLink} href="/"> Profile</a> 
+						<a id="coursesLink" className={headerStyles.coursesLink} href="/"> Courses</a>
+				</div>
 				<SearchForm></SearchForm>
 				
 				<button> Make a Post </button>
