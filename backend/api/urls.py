@@ -34,5 +34,5 @@ urlpatterns = [
     path("courses/<int:course_id>/tags", CourseView.get_tags),
     # # Search routes
     path("courses/<int:course_id>/search", SearchView.as_view()),
-    #path("courses/<int:course_id>/search/users", SearchView.search)
+    # path("courses/<int:course_id>/search/users", SearchView.search)
 ]
