@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router';
 import ApiService from '../../services/ApiService';
 import useStateService from '../../services/StateService';
 import { VISIBILITY, POST_TYPE } from '../../utils/constants';
@@ -35,7 +36,10 @@ export default function PostForm({ post }) {
   const [anonymous, setAnonymous] = useState(startingValues.anonymous);
   const [visibility, setVisibility] = useState(startingValues.visibility);
   const [type, setType] = useState(startingValues.type);
-  const { actions: { setShowModal } } = useStateService();
+  const { pathname } = useLocation();
+  const { state: { course }, actions: { setShowModal } } = useStateService();
+
+	const courseId = pathname.match(/^\/courses\/([0-9]+)/)[1];
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -50,8 +54,7 @@ export default function PostForm({ post }) {
       if (post) {
         await ApiService.patchPost(post.course.id, post.id, postData);
       } else {
-        // await ApiService.createPost()
-        console.log('not implemented yet');
+        await ApiService.createPost(courseId, postData);
         setShowModal(false);
       }
     } catch (error) {
