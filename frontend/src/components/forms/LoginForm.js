@@ -7,19 +7,22 @@ import './style.scss';
 export default function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const { actions: { setUser } } = useStateService();
   const history = useHistory();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setErrorMessage('');
     try {
       const user = await ApiService.login(username, password);
       setUser(user); // save data of logged in user to StateService
     } catch (error) {
       const status = error.response?.status;
       if (status === 406) {
-        console.error('incorrect login credentials');
+        setErrorMessage('Incorrect login credentials.');
       } else {
+        setErrorMessage('An unknown error occurred.');
         console.error('login failed for unknown reason', error);
       }
       return false;
@@ -55,7 +58,8 @@ export default function LoginForm() {
         onChange={e => setPassword(e.target.value)}
         onKeyPress={handleSubmitOnEnter} required></input>
       
-      <input type="submit" value="Submit"></input>
+      {errorMessage ? <p class="error">{errorMessage}</p> : null}
+      <button onClick={handleSubmit}>Log In</button>
     </form>
   );
 }

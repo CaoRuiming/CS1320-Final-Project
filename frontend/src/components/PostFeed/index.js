@@ -32,6 +32,8 @@ export default function PostFeed() {
       }
     };
     refreshPosts();
+    const interval = setInterval(refreshPosts, 5000);
+    return () => clearInterval(interval);
   }, [courseId]);
 
 
