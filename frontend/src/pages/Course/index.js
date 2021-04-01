@@ -40,7 +40,7 @@ export default function Course() {
   return (
     <main className={styles.main}>
       <section className={styles.leftSection}>
-        <h2 className="sr-only">Course Posts</h2>
+      <h2 className="sr-only">Course Posts</h2>
         <PostFeed />
       </section>
       <section className={styles.rightSection}>
