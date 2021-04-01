@@ -1,27 +1,18 @@
 import React from 'react';
 import { Fragment } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import useStateService from '../../services/StateService';
 import SearchForm from '../forms/SearchForm';
-import PostForm from '../forms/PostForm';
+import { NewPostButton } from '../forms/PostForm';
 import './style.scss';
 
 export default function Header() {
 	const { pathname } = useLocation();
-	const { actions: { setShowModal, setModalContent } } = useStateService();
 	const courseView = pathname.match(/^\/courses\/[0-9]+/);
-
-	const handleNewPost = () => {
-		setModalContent(<PostForm />);
-		setShowModal(true);
-	};
 
 	const courseViewElements = (
 		<Fragment>
 			<SearchForm />
-			<button id="new-post-button" onClick={handleNewPost}>
-				New Post
-			</button>
+			<NewPostButton />
 		</Fragment>
 	);
 

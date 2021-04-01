@@ -1,6 +1,6 @@
 import React from 'react';
 import LoginForm from '../components/forms/LoginForm';
-import SignUpForm from '../components/forms/SignUpForm';
+import { SignUpButton } from '../components/forms/SignUpForm';
 
 export default function Home(props) {
 	return (
@@ -8,8 +8,8 @@ export default function Home(props) {
 			<h1>Discourse</h1>
 			<p>Log in using the form below:</p>
 			<LoginForm />
-			<p>Sign up for a new account using the form below:</p>
-			<SignUpForm />
+			<p>or</p>
+			<SignUpButton />
 		</main>
 	);
 }

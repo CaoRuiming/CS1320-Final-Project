@@ -4,6 +4,18 @@ import useStateService from '../../services/StateService';
 import { VISIBILITY, POST_TYPE } from '../../utils/constants';
 import './style.scss';
 
+export function NewPostButton() {
+  const { actions: { setShowModal, setModalContent } } = useStateService();
+  const handleClick = () => {
+    setModalContent(<PostForm />);
+    setShowModal(true);
+  };
+  return (
+    <button id="new-post-button" onClick={handleClick}>
+      New Post
+    </button>
+  );
+}
 
 export default function PostForm({ post }) {
   const originalPost = post ? post : {};
