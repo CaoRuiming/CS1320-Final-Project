@@ -1,4 +1,7 @@
 import axios from 'axios';
+import {
+  mockUser, mockCourse, mockCoursePosts, mockPost, mockCourseTags, mockTag
+} from './mocks';
 
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
 axios.defaults.xsrfCookieName = 'csrftoken';
@@ -8,6 +11,9 @@ export const axiosInstance = axios.create({
   baseURL: `${window.location.origin}/api/v0/`,
   timeout: 300000,
 });
+
+// toggle to true for frontend dev purposes only
+const noBackend = false;
 
 async function genericGet(url) {
   const res = axiosInstance.get(url);
@@ -24,6 +30,10 @@ export default class ApiService {
    * @returns {Promise} Promise that will return the value returned by the API
    */
   static async test(options={}) {
+    if (noBackend) {
+      console.log('noBackend enabled');
+      return 'noBackend';
+    }
     const parameters = { params: { ...options } };
     const result = await axiosInstance.get('/test', parameters);
     return result;
@@ -34,7 +44,9 @@ export default class ApiService {
    * send by Axios. CSRF must be set for POST requests to the API.
    */
   static async getCsrf() {
-    await axiosInstance.get('/csrf');
+    if (!noBackend) {
+      await genericGet('/csrf');
+    }
   }
 
   /**
@@ -44,6 +56,9 @@ export default class ApiService {
    * @returns user object of logged in user
    */
   static async login(username, password) {
+    if (noBackend) {
+      return mockUser;
+    }
     const res = await axiosInstance.post('/login', { username, password });
     return res.data;
   }
@@ -63,6 +78,9 @@ export default class ApiService {
    * @returns user object of logged in user, if applicable
    */
   static async checkLogin() {
+    if (noBackend) {
+      return mockUser;
+    }
     return await genericGet('/checkLogin');
   }
 
@@ -82,6 +100,9 @@ export default class ApiService {
    * @returns course object corresponding to courseId
    */
   static async getCourse(courseId) {
+    if (noBackend) {
+      return mockCourse;
+    }
     return await genericGet(`/courses/${courseId}`);
   }
 
@@ -102,6 +123,9 @@ export default class ApiService {
    * @returns list of post objects under a given course
    */
   static async getCoursePosts(courseId) {
+    if (noBackend) {
+      return mockCoursePosts;
+    }
     return await genericGet(`/courses/${courseId}/posts`);
   }
 
@@ -112,6 +136,9 @@ export default class ApiService {
    * @returns post object corresponding to postId
    */
   static async getPost(courseId, postId) {
+    if (noBackend) {
+      return mockPost;
+    }
     return await genericGet(`/courses/${courseId}/posts/${postId}`);
   }
 
@@ -158,6 +185,9 @@ export default class ApiService {
    * @returns list of tag objects associated with course
    */
   static async getCourseTags(courseId) {
+    if (noBackend) {
+      return mockCourseTags;
+    }
     return await genericGet(`/course/${courseId}/tags`);
   }
 
@@ -168,6 +198,9 @@ export default class ApiService {
    * @returns tag object associated with tagId
    */
   static async getTag(courseId, tagId) {
+    if (noBackend) {
+      return mockTag;
+    }
     return await genericGet(`/course/${courseId}/tags/${tagId}`);
   }
 
@@ -192,6 +225,9 @@ export default class ApiService {
    * @returns results from search
    */
    static async search(courseId, searchTerm) {
+    if (noBackend) {
+      return mockCoursePosts;
+    }
     const url = `/courses/${courseId}/search`;
     const res = await axiosInstance.post(url, {'query' : searchTerm})
     return res.data;

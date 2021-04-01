@@ -11,10 +11,18 @@ export default function CourseList() {
   }
 
   const studentCourses = user.student_courses.map(course => {
-    return <li><Link to={`/courses/${course.id}`}>{course.name}</Link></li>;
+    return (
+      <li key={`course=${course.id}`}>
+        <Link to={`/courses/${course.id}`}>{course.name}</Link>
+      </li>
+    );
   });
   const instructorCourses = user.instructor_courses.map(course => {
-    return <li><Link to={`/courses/${course.id}`}>{course.name}</Link></li>;
+    return (
+      <li key={`course=${course.id}`}>
+        <Link to={`/courses/${course.id}`}>{course.name}</Link>
+      </li>
+    );
   });
 
   return (

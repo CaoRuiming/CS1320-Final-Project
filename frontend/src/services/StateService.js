@@ -26,14 +26,13 @@ export function StateServiceContextProvider(props) {
 			let userData = null;
 			try {
 				userData = await ApiService.checkLogin();
-				console.log(userData);
 			} catch (error) {
 				console.log('User not logged in', error);
 			}
 			setUser(userData);
 		};
 		getUserData();
-	});
+	}, []);
 
 	// this is the object that will be returned by the `useStateService` hook
 	const contextValue = {
