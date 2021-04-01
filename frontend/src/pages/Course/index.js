@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { Redirect, useParams } from 'react-router';
 import PostFeed from '../../components/PostFeed';
 import PostView from '../../components/PostView';
 import ApiService from '../../services/ApiService';
+import useStateService from '../../services/StateService';
 import styles from './courseStyles.module.css';
 
 export default function Course() {
   const { courseId, postId } = useParams();
   const [course, setCourse] = useState(null);
   const [course404, setCourse404] = useState(false);
+  const { state: { user } } = useStateService()
 
   useEffect(() => {
     const getCourse = async () => {
@@ -23,6 +25,11 @@ export default function Course() {
     };
     getCourse();
   }, [courseId]);
+
+  // if user is not logged in, redirect to home/login page
+  if (!user) {
+    return <Redirect to="/home" />;
+  }
 
   if (course404) {
     return (

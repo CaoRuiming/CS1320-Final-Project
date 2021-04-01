@@ -41,11 +41,6 @@ export default function PostForm({ post }) {
     }
     return false;
   };
-  const handleSubmitOnEnter = (event) => {
-    if (event.key === 'Enter') {
-      handleSubmit(event);
-    }
-  };
 
   return (
     <form id="post-form" onSubmit={handleSubmit}>

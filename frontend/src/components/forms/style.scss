@@ -1,6 +1,9 @@
 @import '../../styles/variables.scss';
 
-input[type="text"], input[type="search"] {
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"] {
   border: 1px solid #8E8E8E;
   border-radius: 5px;
   height: 30px;
