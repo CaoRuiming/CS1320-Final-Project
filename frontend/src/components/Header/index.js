@@ -9,7 +9,11 @@ export default function Header() {
 			<nav>
 				<div>
 					<ul>
-						<li><h1 id="header-logo" className="logo">Discourse</h1></li>
+						<li>
+							<Link to="/home">
+								<h1 id="header-logo" className="logo">Discourse</h1>
+							</Link>
+						</li>
 						<li><Link to="/profile"> Profile</Link></li>
 						<li><Link to="/courses"> Courses</Link></li>
 					</ul>

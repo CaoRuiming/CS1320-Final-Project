@@ -4,8 +4,15 @@ import Header from '../components/Header';
 import Home from './Home';
 import Course from './Course';
 import CourseList from './CourseList';
+import useStateService from '../services/StateService';
 
 export default function Main() {
+	const { state: { initializing } } = useStateService();
+
+	if (initializing) {
+		return null;
+	}
+
 	return (
 		<div>
 			<Header />
