@@ -8,6 +8,10 @@
   display: flex; 
   flex-direction: column; 
   width: 100%;
+  height: auto; 
+  text-decoration: none;
+  min-height: 100px;
+
 }
 
 .feedItemTitle{ 
@@ -15,14 +19,37 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
+  color: black; 
+  font-style: normal;
+  text-decoration: none;
+}
+
+.feedItemContent{ 
+  margin: 10px; 
+
+}
+
+.questionPreview{ 
+  color: grey; 
+  text-decoration: none;
+
+  /* background-color: red; */
 }
 
 .tags{ 
   display: flex;
   width:auto; 
-  height: 20%; 
-  background-color: pink; 
+  height: 30px; 
+  background-color: rgb(235, 11, 48); 
+}
 
+.tagItem{ 
+  height: 30px; 
+  min-width: 50px; 
+  width: auto; 
+  border-radius: 13%;
+  background-color: pink; 
+  color: grey; 
 }
 
 .active {

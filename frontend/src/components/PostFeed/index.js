@@ -55,16 +55,16 @@ export default function PostFeed() {
       <li key={`post-${id}`} className={classes}>
 
         <Link to={`/courses/${courseId}/posts/${id}`}>
-          <article tabIndex="0">
+          <article className={feedStyles.feedItemContent} tabIndex="0">
            <div className={feedStyles.feedItemTitle}>
              <h2>{title}</h2>
              <p>current date</p>
             </div>
-            <div>
+            <div className={feedStyles.questionPreview}>
               <p>{content.substring(0, 50)}</p>
             </div>
             <div id="tags" className={feedStyles.tags}>
-              
+              <Tag></Tag>
             </div>
           </article>
         </Link>
