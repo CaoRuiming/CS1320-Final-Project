@@ -13,13 +13,13 @@ function App() {
 	}, []);
 
 	return (
-		<BrowserRouter>
-			<div className="app">
+		<div id="app">
+			<BrowserRouter>
 				<StateServiceContextProvider>
 					<Main />
 				</StateServiceContextProvider>
-			</div>
-		</BrowserRouter>
+			</BrowserRouter>
+		</div>
   );
 }
 

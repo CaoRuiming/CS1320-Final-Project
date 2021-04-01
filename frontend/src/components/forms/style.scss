@@ -1,5 +1,18 @@
 @import '../../styles/variables.scss';
 
+form {
+  display: flex;
+  flex-direction: column;
+
+  div + div {
+    margin-top: 20px;
+  }
+
+  label {
+    display: block;
+  }
+}
+
 input[type="text"],
 input[type="search"],
 input[type="email"],
@@ -9,4 +22,31 @@ input[type="password"] {
   height: 30px;
   padding: 5px;
   background-color: hsl(171, 18, 95);
+  font-size: 16px;
+}
+
+button {
+  border: 1px solid #8E8E8E;
+  border-radius: 5px;
+  height: 30px;
+  padding: 5px;
+  background-color: hsl(171, 18, 95);
+  font-size: 16px;
+  background-color: $color-f;
+  color: white;
+  font-weight: bold;
+
+  & + button {
+    margin-left: 10px;
+  }
+}
+
+textarea {
+  width: 100%;
+  min-height: 100px;
+  height: 20vh;
+  font-size: 16px;
+  border: 1px solid #8E8E8E;
+  border-radius: 5px;
+  padding: 5px;
 }

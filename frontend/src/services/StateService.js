@@ -16,7 +16,10 @@ export function StateServiceContextProvider(props) {
 	const [initializing, setInitializing] = useState(true);
 	const [user, setUser] = useState(null);
 	const [searchString, setSearchString] = useState('');
+	const [showModal, setShowModal] = useState(false);
+	const [modalContent, setModalContent] = useState(null);
 
+	// run the test function in ApiService
 	useEffect(() => {
 		ApiService.test();
 	}, []);
@@ -47,10 +50,14 @@ export function StateServiceContextProvider(props) {
 			initializing, // read-only to the rest of the app
 			user,
 			searchString,
+			showModal,
+			modalContent,
 		},
 		actions: {
 			setUser,
 			setSearchString,
+			setShowModal,
+			setModalContent,
 		},
 	};
 

@@ -10,7 +10,7 @@ export default function Course() {
   const { courseId, postId } = useParams();
   const [course, setCourse] = useState(null);
   const [course404, setCourse404] = useState(false);
-  const { state: { user } } = useStateService()
+  const { state: { user } } = useStateService();
 
   useEffect(() => {
     const getCourse = async () => {

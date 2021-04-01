@@ -6,13 +6,19 @@ import Course from './Course';
 import CourseList from './CourseList';
 import useStateService from '../services/StateService';
 import Profile from './Profile';
+import ReactModal from 'react-modal';
 
 export default function Main() {
-	const { state: { initializing } } = useStateService();
+	const {
+		state: { initializing, showModal, modalContent },
+	} = useStateService();
 
 	if (initializing) {
 		return null;
 	}
+
+	// required for accessibility reasons
+	ReactModal.setAppElement('#app');
 
 	return (
 		<div>
@@ -26,6 +32,7 @@ export default function Main() {
 				<Route exact path="/profile" component={Profile} />
 				<Redirect to="/home" />
 			</Switch>
+			<ReactModal isOpen={showModal}>{modalContent}</ReactModal>
 		</div>
 	);
 }
