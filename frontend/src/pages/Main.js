@@ -22,8 +22,8 @@ export default function Main() {
 				<Route path="/courses/:courseId/posts/:postId" component={Course} />
 				<Route path="/courses/:courseId/posts" component={Course} />
 				<Route path="/courses/:courseId" component={Course} />
-				<Route path="/courses" component={CourseList} />
-				<Route path="/profile" component={Profile} />
+				<Route exact path="/courses" component={CourseList} />
+				<Route exact path="/profile" component={Profile} />
 				<Redirect to="/home" />
 			</Switch>
 		</div>
