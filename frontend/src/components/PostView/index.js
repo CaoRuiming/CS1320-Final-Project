@@ -43,6 +43,13 @@ export default function PostView() {
         <div className={feedStyles.postContentContainer}><p>{content}</p></div>
         {student_reply ? <div><p>{student_reply}</p></div> : null}
         {instructor_reply ? <div style={feedStyles.instructorReplyContainer}><p>{instructor_reply}</p></div> : null}
+        <form name="responseForm" >
+          <label for="responseForm">
+            <h3 className={feedStyles.responseFormTitle}>Add to the discussion:</h3>
+          </label>
+          <textarea name="responseFormText" id="responseForm" placeholder="Add to the discussion" className={feedStyles.responseForm}></textarea>
+    
+        </form>
       </div>
     </article>
   );
