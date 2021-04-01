@@ -59,6 +59,14 @@ export default class ApiService {
   }
 
   /**
+   * Get user data for currently logged in user. Throws error if not logged in.
+   * @returns user object of logged in user, if applicable
+   */
+  static async checkLogin() {
+    return await genericGet('/checkLogin');
+  }
+
+  /**
    * Creates new user account using given data.
    * @param {Object} newUserData mapping of new post properties with values
    * @returns newly created user

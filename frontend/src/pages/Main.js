@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Header from '../components/Header';
 import Home from './Home';
 import Course from './Course';
+import CourseList from './CourseList';
 
 export default function Main() {
 	return (
@@ -13,6 +14,7 @@ export default function Main() {
 				<Route path="/courses/:courseId/posts/:postId" component={Course} />
 				<Route path="/courses/:courseId/posts" component={Course} />
 				<Route path="/courses/:courseId" component={Course} />
+				<Route path="/courses" component={CourseList} />
 				<Redirect to="/home" />
 			</Switch>
 		</div>

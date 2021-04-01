@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import ApiService from '../../services/ApiService';
 import useStateService from '../../services/StateService';
 import './style.scss';
@@ -7,6 +8,7 @@ export default function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const { actions: { setUser } } = useStateService();
+  const history = useHistory();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -20,9 +22,11 @@ export default function LoginForm() {
       } else {
         console.error('login failed for unknown reason', error);
       }
+      return false;
     }
     setUsername('');
     setPassword('');
+    history.push('/courses');
     return false;
   };
   const handleSubmitOnEnter = (event) => {

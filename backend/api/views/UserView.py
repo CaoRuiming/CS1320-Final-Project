@@ -91,3 +91,8 @@ class UserView(View):
         """Logout the requests user."""
         UserService.logout(request)
         return HttpResponse("Logout Successful")
+    
+    @authenticated
+    def checkLogin(request: HttpRequest) -> HttpResponse:
+        """Returns user object associated with request if possible."""
+        return HttpResponse(dumps(UserService.user_to_dict(request.user)))
