@@ -7,6 +7,10 @@
 
 header {
     border-bottom: 2px solid #4B9DA3;
+    // position: fixed;
+    // top: 0;
+    // width: 100%;
+    // background-color: white;
 
     nav {
         @include vertical-center();

@@ -9,7 +9,7 @@ export default function Tag(){
 
     return(
         <Link href="/" className={feedStyles.linkStyle}>
-            <div className={feedStyles.tagItem}>tag</div>
+            <div className={feedStyles.tagItem}></div>
         </Link>
     ); 
 

@@ -66,7 +66,6 @@ export default function PostFeed() {
             <div id="tags" className={feedStyles.tags}>
               <Tag></Tag>
               <Tag></Tag>
-
             </div>
           </article>
         </Link>

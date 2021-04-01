@@ -1,9 +1,11 @@
+/* Styling for Post Feed and Feed Items */
 .feed {
   list-style-type: none;
   padding: 0;
   text-decoration: none;
   height: auto; 
   width: 100%; 
+  overflow: scroll;
 }
 
 .linkStyle{ 
@@ -81,3 +83,41 @@
   background-color: rgb(233, 233, 233);
 }
 
+/* Styling for Post View */
+.postViewMain{ 
+  background-color: rgb(59, 158, 153);
+  height: 100vh; 
+  padding: 0; 
+  color: rgb(244, 255, 254); 
+}
+
+.postViewContentContainer{ 
+  padding: 20px;
+  padding-top: 30px;  
+}
+
+.viewTitle{ 
+  padding: 0; 
+  margin: 0; 
+  margin-bottom: 10px; 
+  font-size: calc(20px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+  font-style: bold;
+}
+
+.postContentContainer{ 
+  min-height: 100px; 
+  height: auto; 
+  background-color:rgba(0, 84, 87, 0.541); 
+  border-radius: 8px; 
+  margin-top: 5px; 
+  padding: 2px; 
+}
+
+.instructorReplyContainer{ 
+  min-height: 100px; 
+  height: auto; 
+  background-color:rgba(213, 254, 255, 0.699); 
+  border-radius: 8px; 
+  margin-top: 5px; 
+  padding: 2px; 
+}

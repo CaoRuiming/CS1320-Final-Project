@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import ApiService from '../../services/ApiService';
+import feedStyles from '../PostFeed/feedStyles.module.css';
+import Tag from '../../components/Tag';
+
 
 export default function PostView() {
   const { courseId, postId } = useParams();
@@ -31,12 +34,16 @@ export default function PostView() {
   const { title, content, tags, student_reply, instructor_reply } = postData;
 
   return (
-    <article>
-      <h2>{title}</h2>
-      <div>{tags.map(t => <span key={`tag-${t.id}`}>{t.name}</span>)}</div>
-      <div><p>{content}</p></div>
-      {student_reply ? <div><p>{student_reply}</p></div> : null}
-      {instructor_reply ? <div><p>{instructor_reply}</p></div> : null}
+    <article className={feedStyles.postViewMain}>
+      <div className={feedStyles.postViewContentContainer}> 
+        <div className={feedStyles.postViewHeader}>
+          <h2 className={feedStyles.viewTitle}>{title}</h2>
+        </div>
+        <div className={feedStyles.tags}>{tags.map(t => <Tag><span key={`tag-${t.id}`}>{t.name}</span> </Tag>)}</div>
+        <div className={feedStyles.postContentContainer}><p>{content}</p></div>
+        {student_reply ? <div><p>{student_reply}</p></div> : null}
+        {instructor_reply ? <div style={feedStyles.instructorReplyContainer}><p>{instructor_reply}</p></div> : null}
+      </div>
     </article>
   );
 }
