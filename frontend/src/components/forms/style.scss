@@ -11,6 +11,18 @@ form {
   label {
     display: block;
   }
+
+  .form-radio-group, .form-checkbox-group {
+    & > div + div {
+      margin-top: 5px;
+    }
+    label {
+      display: inline;
+    }
+    p {
+      margin: 0;
+    }
+  }
 }
 
 input[type="text"],
