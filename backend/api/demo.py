@@ -18,6 +18,8 @@ def setup():
         "josiah_carberry@brown.edu",
         password=passwords[0],
         email="josiah_carberry@brown.edu",
+        first_name="Josiah",
+        last_name="Carberry",
     )
     user1.save()
 
@@ -26,6 +28,7 @@ def setup():
         "blueno@brown.edu",
         password=passwords[1],
         email="blueno@brown.edu",
+        first_name="Blueno",
     )
     user2.save()
 
@@ -34,6 +37,8 @@ def setup():
         "random@brown.edu",
         password=passwords[2],
         email="random@brown.edu",
+        first_name="Random",
+        last_name="Person",
     )
     user3.save()
 
@@ -60,8 +65,8 @@ def setup():
     post2 = Post(
         author=user1,
         course=course1,
-        title="I have a question",
-        content="idk what im doing",
+        title="I also have a question",
+        content="i really dont know what im doing",
         anonymous=False,
         type=Post.Type.NOTE,
         visibility=Post.Visibility.PRIVATE,
