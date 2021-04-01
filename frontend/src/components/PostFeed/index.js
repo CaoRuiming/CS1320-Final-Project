@@ -54,17 +54,19 @@ export default function PostFeed() {
     return (
       <li key={`post-${id}`} className={classes}>
 
-        <Link to={`/courses/${courseId}/posts/${id}`}>
+        <Link className={feedStyles.linkStyle} to={`/courses/${courseId}/posts/${id}`}>
           <article className={feedStyles.feedItemContent} tabIndex="0">
            <div className={feedStyles.feedItemTitle}>
-             <h2>{title}</h2>
-             <p>current date</p>
+             <h2 className={feedStyles.titleContent}>{title}</h2>
+             <p className={feedStyles.feedItemDate}>current date</p>
             </div>
             <div className={feedStyles.questionPreview}>
-              <p>{content.substring(0, 50)}</p>
+              <p className={feedStyles.previewContent}>{content.substring(0, 50)}</p>
             </div>
             <div id="tags" className={feedStyles.tags}>
               <Tag></Tag>
+              <Tag></Tag>
+
             </div>
           </article>
         </Link>

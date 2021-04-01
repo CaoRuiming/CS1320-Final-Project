@@ -1,57 +1,83 @@
 .feed {
   list-style-type: none;
   padding: 0;
+  text-decoration: none;
+  height: auto; 
+  width: 100%; 
+}
+
+.linkStyle{ 
+  text-decoration: none;
 }
 
 .feedItem {
-  border: 1px solid black;
+  border: 1px solid rgba(0, 84, 87, 0.3) ;
   display: flex; 
   flex-direction: column; 
   width: 100%;
-  height: auto; 
   text-decoration: none;
   min-height: 100px;
-
 }
 
 .feedItemTitle{ 
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content:space-between;
+  align-items:baseline;
   color: black; 
   font-style: normal;
   text-decoration: none;
 }
 
 .feedItemContent{ 
-  margin: 10px; 
-
+  margin: 10px;
+  flex:1;  
+  text-decoration: none;
 }
 
 .questionPreview{ 
   color: grey; 
-  text-decoration: none;
+  flex: 1; 
+  margin-bottom: 10px; 
+}
 
-  /* background-color: red; */
+.titleContent{ 
+  padding: 0px; 
+  margin: 0px;
+  text-decoration: none;
+}
+
+.previewContent{ 
+  padding: 0px; 
+  margin: 0px;
+  text-decoration: none;
 }
 
 .tags{ 
   display: flex;
   width:auto; 
   height: 30px; 
-  background-color: rgb(235, 11, 48); 
 }
 
 .tagItem{ 
-  height: 30px; 
-  min-width: 50px; 
+  display: flex; 
+  height: 25px; 
+  min-width: 80px; 
   width: auto; 
-  border-radius: 13%;
-  background-color: pink; 
+  border-radius: 8px;
+  background-color: rgb(192, 255, 226); 
   color: grey; 
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px; 
+  padding-bottom: 3px; 
+}
+
+.tagItem:hover{ 
+  background-color: rgb(119, 194, 159);
 }
 
 .active {
   background-color: rgb(233, 233, 233);
 }
+

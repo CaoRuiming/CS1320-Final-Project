@@ -13,7 +13,7 @@ export const axiosInstance = axios.create({
 });
 
 // toggle to true for frontend dev purposes only
-const noBackend = false;
+const noBackend = true;
 
 async function genericGet(url) {
   const res = axiosInstance.get(url);

@@ -8,7 +8,9 @@ import feedStyles from '../PostFeed/feedStyles.module.css';
 export default function Tag(){ 
 
     return(
-        <div className={feedStyles.tagItem}>tag</div>
+        <Link href="/" className={feedStyles.linkStyle}>
+            <div className={feedStyles.tagItem}>tag</div>
+        </Link>
     ); 
 
 }
