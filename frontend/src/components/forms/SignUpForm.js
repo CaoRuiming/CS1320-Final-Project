@@ -53,7 +53,7 @@ export default function SignUpForm() {
         onChange={e => setLastName(e.target.value)}
         onKeyPress={handleSubmitOnEnter} required></input>
 
-      <label for="sign-up-email">Email Address</label>
+      <label htmlFor="sign-up-email">Email Address</label>
       <input
         id="sign-up-email"
         type="email"
@@ -61,7 +61,7 @@ export default function SignUpForm() {
         onChange={e => setEmail(e.target.value)}
         onKeyPress={handleSubmitOnEnter} required></input>
 
-      <label for="sign-up-password">Password</label>
+      <label htmlFor="sign-up-password">Password</label>
       <input
         id="sign-up-password"
         type="password"

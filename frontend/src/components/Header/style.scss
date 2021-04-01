@@ -39,6 +39,10 @@ header {
                 text-decoration: none;
                 color: rgb(108, 131, 137);
                 font-weight: bold;
+
+                &.active {
+                    text-decoration: underline;
+                }
             }
         }
 

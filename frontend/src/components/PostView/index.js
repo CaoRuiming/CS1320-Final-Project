@@ -33,7 +33,7 @@ export default function PostView() {
   return (
     <article>
       <h2>{title}</h2>
-      <div>{tags.map(t => <span>{t.name}</span>)}</div>
+      <div>{tags.map(t => <span key={`tag-${t.id}`}>{t.name}</span>)}</div>
       <div><p>{content}</p></div>
       {student_reply ? <div><p>{student_reply}</p></div> : null}
       {instructor_reply ? <div><p>{instructor_reply}</p></div> : null}

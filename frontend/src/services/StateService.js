@@ -13,7 +13,7 @@ export const StateServiceContext = createContext();
  */
 export function StateServiceContextProvider(props) {
 	// example value that is store in StateService
-	const [example, setExample] = useState(undefined);
+	const [initializing, setInitializing] = useState(true);
 	const [user, setUser] = useState(null);
 	const [searchString, setSearchString] = useState('');
 
@@ -34,15 +34,21 @@ export function StateServiceContextProvider(props) {
 		getUserData();
 	}, []);
 
+	// update the initializing variable
+	useEffect(() => {
+		if (user) {
+			setInitializing(false);
+		}
+	}, [user]);
+
 	// this is the object that will be returned by the `useStateService` hook
 	const contextValue = {
 		state: {
-			example,
+			initializing, // read-only to the rest of the app
 			user,
 			searchString,
 		},
 		actions: {
-			setExample,
 			setUser,
 			setSearchString,
 		},

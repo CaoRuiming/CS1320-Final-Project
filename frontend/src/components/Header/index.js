@@ -1,22 +1,34 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import SearchForm from '../forms/SearchForm';
 import './style.scss';
 
 export default function Header() {
+	const { pathname } = useLocation();
+	const courseView = pathname.match(/^\/courses\/[0-9]+/);
+	// const { courseId } = useParams();
+
 	return (
 		<header>
 			<nav>
 				<div>
 					<ul>
-						<li><h1 id="header-logo" className="logo">Discourse</h1></li>
-						<li><Link to="/profile"> Profile</Link></li>
-						<li><Link to="/courses"> Courses</Link></li>
+						<li>
+							<Link to="/home">
+								<h1 id="header-logo" className="logo">Discourse</h1>
+							</Link>
+						</li>
+						<li>
+							<NavLink to="/profile" activeClassName="active">Profile</NavLink>
+						</li>
+						<li>
+							<NavLink to="/courses" activeClassName="active">Courses</NavLink>
+						</li>
 					</ul>
 				</div>
 				<div>
-					<SearchForm />
-					<button id="new-post-button">New Post</button>
+					{courseView ? <SearchForm /> : null}
+					{courseView ? <button id="new-post-button">New Post</button> : null}
 				</div>
 			</nav>
 		</header>

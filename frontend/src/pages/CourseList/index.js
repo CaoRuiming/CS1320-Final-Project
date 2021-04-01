@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import useStateService from '../../services/StateService';
+import './style.scss';
 
 export default function CourseList() {
   const { state: { user } } = useStateService();
