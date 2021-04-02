@@ -11,6 +11,7 @@ import ReactModal from 'react-modal';
 export default function Main() {
 	const {
 		state: { initializing, showModal, modalContent },
+		actions: { setShowModal },
 	} = useStateService();
 
 	if (initializing) {
@@ -32,7 +33,11 @@ export default function Main() {
 				<Route exact path="/profile" component={Profile} />
 				<Redirect to="/home" />
 			</Switch>
-			<ReactModal isOpen={showModal}>{modalContent}</ReactModal>
+			<ReactModal
+				isOpen={showModal}
+				onRequestClose={() => setShowModal(false)}>
+				{modalContent}
+			</ReactModal>
 		</div>
 	);
 }

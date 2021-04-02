@@ -116,6 +116,7 @@ class PostView(View):
             author=request.user,
             course=course,
         )
+        new_post.save()
 
         # handle optional fields
         if payload.get("parent", False):

@@ -2,14 +2,17 @@
   display: flex;
   margin: 0; 
   padding: 0; 
+  width: 100vw; 
+  flex: 2; 
 }
 
 .leftSection {
   padding: 0; 
   margin: 0; 
-  flex: 1;
+  flex-grow: 1;
 }
 
 .rightSection {
-  flex: 1;
+  flex-grow: 1;
 }
+
