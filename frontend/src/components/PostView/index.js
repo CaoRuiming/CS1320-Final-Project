@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import ApiService from '../../services/ApiService';
+import PostForm from '../forms/PostForm';
 import feedStyles from '../PostFeed/feedStyles.module.css';
 
 function Tag() {
@@ -29,7 +30,7 @@ export default function PostView() {
       }
     };
     getPostData();
-  }, [courseId,postId]);
+  }, [courseId, postId]);
 
   if (!postData) {
     return <article><h2>Loading post...</h2></article>;
@@ -53,12 +54,7 @@ export default function PostView() {
         <div className={feedStyles.postContentContainer}><p>{content}</p></div>
         {student_reply ? <div><p>{student_reply}</p></div> : null}
         {instructor_reply ? <div style={feedStyles.instructorReplyContainer}><p>{instructor_reply}</p></div> : null}
-        <form name="responseForm" >
-          <label for="responseForm">
-            <h3 className={feedStyles.responseFormTitle}>Add to the discussion:</h3>
-          </label>
-          <textarea name="responseFormText" id="responseForm" placeholder="Add to the discussion" className={feedStyles.responseForm}></textarea>
-        </form>
+        <PostForm post={postData} response={true} />
       </div>
     </article>
   );
