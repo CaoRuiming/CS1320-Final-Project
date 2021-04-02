@@ -108,8 +108,8 @@
 }
 
 .postContentContainer{ 
-  min-height: 100px; 
-  height: auto; 
+  /* min-height: 100px;  */
+  height: auto;  
   background-color:rgba(0, 84, 87, 0.541); 
   border-radius: 8px; 
   margin-top: 5px; 
@@ -134,5 +134,21 @@
 .responseFormTitle{ 
   padding: 0; 
   margin: 0; 
+  margin-top: 30px; 
   margin-bottom: 5px; 
+}
+
+.editPost{ 
+  border: 1px solid #8E8E8E;
+  border-radius: 8px;
+  height: 30px;
+  padding: 5px;
+  background-color: rgb(95, 211, 139);
+  color: white;
+  font-weight: bold;
+  width: 100px; 
+  align-self: flex-start;
+  justify-self: flex-end;
+  margin-top: 30px
+
 }
