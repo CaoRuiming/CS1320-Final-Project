@@ -16,7 +16,7 @@ export default function Header() {
 		</Fragment>
 	);
 
-	return (
+	return pathname === "home" ? (
 		<header>
 			<nav>
 				<div>
@@ -39,5 +39,5 @@ export default function Header() {
 				</div>
 			</nav>
 		</header>
-	);
+	) : null;
 }
