@@ -58,7 +58,7 @@ export default function LoginForm() {
         onChange={e => setPassword(e.target.value)}
         onKeyPress={handleSubmitOnEnter} required></input>
       
-      {errorMessage ? <p class="error">{errorMessage}</p> : null}
+      {errorMessage ? <p className="error">{errorMessage}</p> : null}
       <button onClick={handleSubmit}>Log In</button>
     </form>
   );

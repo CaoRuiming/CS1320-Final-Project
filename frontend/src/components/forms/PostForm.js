@@ -124,7 +124,7 @@ export default function PostForm({ post, response=false }) {
       </div>
       <div id="post-content-settings">
 
-      <div class="form-radio-group">
+      <div className="form-radio-group">
         <p>Post Type</p>
         <div>
           <input

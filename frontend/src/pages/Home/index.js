@@ -1,43 +1,24 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import LoginForm from '../../components/forms/LoginForm';
-//import SignUpForm from '../../components/forms/SignUpForm';
-import useStateService from '../../services/StateService';
-import './homeStyles.scss';
+import { SignUpButton } from '../../components/forms/SignUpForm';
+import './style.scss';
 
-export default function UrlInput(props) {
-	// example of using StateService
-	const {
-		state: { example },
-		actions: { setExample },
-	} = useStateService();
-
-	// example
-	// useEffect(() => {
-	// 	setExample('example');
-	// 	console.log('example value:', example);
-	// }, []);
-
+export default function Home() {
 	return (
-		<main>
-            <div className="homeBase" >
-                <div className="leftSection">
-
-                    <h1>Discourse</h1>
-                    <p>Learn Together</p>
-
-                   
-                </div>
-                <div className="rightSection">
-                
-                    <LoginForm />
-						{/* Having issues rending now when running frontend was working at first but stopped when 
-						I started editing the loginform */}
-                </div>
-                
-                {/* <p>Sign up for a new account using the form below:</p>
-
-                <SignUpForm /> */}
-            </div>
+		<main id="home-page">
+			<div className="home-base" >
+				<div className="left-section">
+					<h1>Discourse</h1>
+					<p>Learn Together</p>
+				</div>
+				<div className="right-section">
+					<LoginForm />
+					<div className="horizontal-center">
+						<p>or</p>
+						<SignUpButton />
+					</div>
+				</div>
+			</div>
 		</main>
 	);
 }
