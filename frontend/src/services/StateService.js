@@ -30,19 +30,18 @@ export function StateServiceContextProvider(props) {
 			try {
 				userData = await ApiService.checkLogin();
 			} catch (error) {
-				console.log('User not logged in', error);
+				const status = error.response?.status;
+				if (status === 401) {
+					console.log('User not logged in');
+				} else {
+					console.error('Unknown error occurred:', error);
+				}
 			}
 			setUser(userData);
+			setInitializing(false);
 		};
 		getUserData();
 	}, []);
-
-	// update the initializing variable
-	useEffect(() => {
-		if (user) {
-			setInitializing(false);
-		}
-	}, [user]);
 
 	// this is the object that will be returned by the `useStateService` hook
 	const contextValue = {
