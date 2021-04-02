@@ -61,7 +61,7 @@ export default function PostFeed() {
     const classes = `${feedStyles.feedItem} ${activeClass}`;
     return (
       <li key={`post-${id}`} className={classes}>
-        <div className={feedStyles.feedItemTitle}>Needs an answer</div>
+        {/* <div className={feedStyles.feedItemTitle}>Needs an answer</div> */}
         <Link className={feedStyles.linkStyle} to={`/courses/${courseId}/posts/${id}`}>
           <article className={feedStyles.feedItemContent} tabIndex="0">
            <div className={feedStyles.feedItemTitle}>

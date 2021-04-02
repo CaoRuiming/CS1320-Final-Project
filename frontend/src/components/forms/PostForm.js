@@ -66,17 +66,20 @@ export default function PostForm({ post }) {
 
   return (
     <form id="post-form" onSubmit={handleSubmit}>
-      <h2>Create a Post</h2>
-
-      <div>
-        <label htmlFor="post-title">Title</label>
+      <div id="post-form-title">
+        <h2 id="post-title-content">Create a Post</h2>
+      </div>
+      <div id="post-title-settings">
+        <label className="sr-only">Title</label>
         <input
           id="post-title"
           type="text"
           value={title}
           placeholder={`${type === POST_TYPE.NOTE ? 'Note' : 'Question'} Title`}
-          onChange={e => setTitle(e.target.value)} required></input>
+          onChange={e => setTitle(e.target.value)} required>
+        </input>
       </div>
+      <div id="post-content-settings">
 
       <div class="form-radio-group">
         <p>Post Type</p>
@@ -121,6 +124,17 @@ export default function PostForm({ post }) {
           <label htmlFor="post-visibility-private">Private</label>
         </div>
       </div>
+   
+   </div>
+
+      <div className="form-checkbox-group">
+        <input
+          id="post-anonymous"
+          type="checkbox"
+          checked={anonymous}
+          onChange={e => setAnonymous(e.target.checked)}></input>
+        <label htmlFor="post-anonymous">Enable Anonymity</label>
+      </div>
 
       <div>
         <label htmlFor="post-content">Content</label>
@@ -130,15 +144,6 @@ export default function PostForm({ post }) {
           onChange={e => setContent(e.target.value)}
           required>
         </textarea>
-      </div>
-
-      <div className="form-checkbox-group">
-        <input
-          id="post-anonymous"
-          type="checkbox"
-          checked={anonymous}
-          onChange={e => setAnonymous(e.target.checked)}></input>
-        <label htmlFor="post-anonymous">Enable Anonymity</label>
       </div>
 
       <div>

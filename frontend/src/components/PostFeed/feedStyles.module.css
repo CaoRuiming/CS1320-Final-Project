@@ -118,7 +118,6 @@
 
 .instructorReplyContainer{ 
   min-height: 100px; 
-  /* height: auto;  */
   background-color:rgba(213, 254, 255, 0.699); 
   border-radius: 8px; 
   margin-top: 5px; 
@@ -139,7 +138,6 @@
 }
 
 .editPost{ 
-  border: 1px solid #8E8E8E;
   border-radius: 8px;
   height: 30px;
   padding: 5px;
