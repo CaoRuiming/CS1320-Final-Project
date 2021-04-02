@@ -15,7 +15,7 @@ main#home-page {
 
 .left-section {
 	justify-content: center;
-	flex: 1;
+	flex: 3;
 	margin-top: 10px;
 	padding-right: 20px;
 
@@ -33,9 +33,16 @@ main#home-page {
 }
 
 .right-section {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
 	justify-content: center;
-	flex: 1;
+	align-items: center;
+	flex: 2;
 	margin-top: 10px;
+	background-color: white;
+	margin: 0;
+	padding: 0 20px;
 
 	label {
 		color: white;
