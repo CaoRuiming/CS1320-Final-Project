@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 import ApiService from '../../services/ApiService';
 import feedStyles from '../PostFeed/feedStyles.module.css';
-import Tag from '../../components/Tag';
 
+function Tag() {
+  return(
+      <Link href="/" className={feedStyles.linkStyle}>
+          <div className={feedStyles.tagItem}>tag</div>
+      </Link>
+  ); 
+}
 
 export default function PostView() {
   const { courseId, postId } = useParams();
@@ -40,6 +47,9 @@ export default function PostView() {
           <h2 className={feedStyles.viewTitle}>{title}</h2>
         </div>
         <div className={feedStyles.tags}>{tags.map(t => <Tag><span key={`tag-${t.id}`}>{t.name}</span> </Tag>)}</div>
+        <form name="editPost">
+          <button className={feedStyles.editPost}>Edit Post</button>
+        </form>
         <div className={feedStyles.postContentContainer}><p>{content}</p></div>
         {student_reply ? <div><p>{student_reply}</p></div> : null}
         {instructor_reply ? <div style={feedStyles.instructorReplyContainer}><p>{instructor_reply}</p></div> : null}
@@ -48,7 +58,6 @@ export default function PostView() {
             <h3 className={feedStyles.responseFormTitle}>Add to the discussion:</h3>
           </label>
           <textarea name="responseFormText" id="responseForm" placeholder="Add to the discussion" className={feedStyles.responseForm}></textarea>
-    
         </form>
       </div>
     </article>
