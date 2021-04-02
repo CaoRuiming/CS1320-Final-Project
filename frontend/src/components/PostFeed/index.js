@@ -14,9 +14,11 @@ function Tag() {
 
 export default function PostFeed() {
   const { courseId, postId } = useParams();
-  const [posts, setPosts] = useState([]);
   const [posts404, setPosts404] = useState(false);
-  const { state: { searchString } } = useStateService();
+  const {
+    state: { searchString, posts },
+    actions: { setPosts },
+  } = useStateService();
   const [searchedPosts, setSearchPosts] = useState([]);
 
 
@@ -34,7 +36,7 @@ export default function PostFeed() {
     refreshPosts();
     const interval = setInterval(refreshPosts, 5000);
     return () => clearInterval(interval);
-  }, [courseId]);
+  }, [courseId, setPosts]);
 
 
   useEffect(()=> {
@@ -42,7 +44,6 @@ export default function PostFeed() {
       try{
         if (searchString) {
           setSearchPosts(await ApiService.search(courseId, searchString));
-          console.log('changed');
         }
       } catch (error) {
         const status = error.response?.status;
@@ -55,7 +56,8 @@ export default function PostFeed() {
   }, [courseId, searchString] );
  
   const filteredPosts = (searchString ? searchedPosts : posts);
-  const renderedPosts = filteredPosts.map(post => {
+  const sortedPosts = filteredPosts.sort((a, b) => a.created_at < b.created_at ? 1 : -1);
+  const renderedPosts = sortedPosts.map(post => {
     const { id, title, content } = post;
     const activeClass = id.toString() === postId ? feedStyles.active : '';
     const classes = `${feedStyles.feedItem} ${activeClass}`;

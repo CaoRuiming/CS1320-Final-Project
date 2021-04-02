@@ -15,6 +15,8 @@ export function StateServiceContextProvider(props) {
 	// example value that is store in StateService
 	const [initializing, setInitializing] = useState(true);
 	const [user, setUser] = useState(null);
+	const [course, setCourse] = useState(null);
+	const [posts, setPosts] = useState([]);
 	const [searchString, setSearchString] = useState('');
 	const [showModal, setShowModal] = useState(false);
 	const [modalContent, setModalContent] = useState(null);
@@ -48,12 +50,16 @@ export function StateServiceContextProvider(props) {
 		state: {
 			initializing, // read-only to the rest of the app
 			user,
+			course,
+			posts,
 			searchString,
 			showModal,
 			modalContent,
 		},
 		actions: {
 			setUser,
+			setCourse,
+			setPosts,
 			setSearchString,
 			setShowModal,
 			setModalContent,

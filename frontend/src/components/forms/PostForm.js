@@ -38,10 +38,13 @@ export default function PostForm({ post, response=false }) {
   const [anonymous, setAnonymous] = useState(startingValues.anonymous);
   const [visibility, setVisibility] = useState(startingValues.visibility);
   const [type, setType] = useState(startingValues.type);
-  const [studentAnswer, setStudentAnswer] = useState(startingValues.student_answer)
-  const [instructorAnswer, setInstructorAnswer] = useState(startingValues.student_answer)
+  const [studentAnswer, setStudentAnswer] = useState(startingValues.student_answer);
+  const [instructorAnswer, setInstructorAnswer] = useState(startingValues.student_answer);
   const { pathname } = useLocation();
-  const { state: { user }, actions: { setShowModal } } = useStateService();
+  const {
+    state: { user },
+    actions: { setShowModal, setPosts },
+  } = useStateService();
 
 	const courseId = pathname.match(/^\/courses\/([0-9]+)/)[1];
   const isInstructor = !!(post?.course?.instructors?.find(x => x.id === user.id));
@@ -51,6 +54,14 @@ export default function PostForm({ post, response=false }) {
     setInstructorAnswer(post?.instructor_answer || '');
     setStudentAnswer(post?.student_answer || '');
   }, [post]);
+
+  const refreshPosts = async () => {
+    try {
+      setPosts(await ApiService.getCoursePosts(courseId));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -75,8 +86,9 @@ export default function PostForm({ post, response=false }) {
         await ApiService.patchPost(post.course.id, post.id, postData);
       } else {
         await ApiService.createPost(courseId, postData);
-        setShowModal(false);
       }
+      setShowModal(false);
+      refreshPosts();
     } catch (error) {
       const status = error.response?.status;
       console.error(`request failed with status code of ${status}`);

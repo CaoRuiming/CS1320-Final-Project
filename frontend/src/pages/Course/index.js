@@ -8,9 +8,8 @@ import styles from './courseStyles.module.css';
 
 export default function Course() {
   const { courseId, postId } = useParams();
-  const [course, setCourse] = useState(null);
   const [course404, setCourse404] = useState(false);
-  const { state: { user } } = useStateService();
+  const { state: { user }, actions: { setCourse } } = useStateService();
 
   useEffect(() => {
     const getCourse = async () => {
@@ -24,7 +23,7 @@ export default function Course() {
       }
     };
     getCourse();
-  }, [courseId]);
+  }, [courseId, setCourse]);
 
   // if user is not logged in, redirect to home/login page
   if (!user) {
