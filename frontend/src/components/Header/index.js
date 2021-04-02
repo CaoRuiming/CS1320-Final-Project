@@ -15,8 +15,9 @@ export default function Header() {
 			<NewPostButton />
 		</Fragment>
 	);
-
-	return pathname === "home" ? (
+	
+	console.log(pathname);
+	return pathname !== "/home" ? (
 		<header>
 			<nav>
 				<div>
