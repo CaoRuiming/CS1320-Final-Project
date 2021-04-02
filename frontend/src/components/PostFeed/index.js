@@ -2,41 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ApiService from '../../services/ApiService';
 import useStateService from '../../services/StateService';
-import feedStyles from './feedStyles.module.css';
-
-function Tag() {
-  return(
-      <Link href="/" className={feedStyles.linkStyle}>
-          <div className={feedStyles.tagItem}>tag</div>
-      </Link>
-  ); 
-}
+import Tags from '../Tags';
+import './style.scss';
 
 export default function PostFeed() {
   const { courseId, postId } = useParams();
-  const [posts404, setPosts404] = useState(false);
   const {
     state: { searchString, posts },
-    actions: { setPosts },
+    actions: { refreshPosts },
   } = useStateService();
   const [searchedPosts, setSearchPosts] = useState([]);
 
 
   useEffect(() => {
-    const refreshPosts = async () => {
-      try {
-        setPosts(await ApiService.getCoursePosts(courseId));
-      } catch (error) {
-        const status = error.response?.status;
-        if (status === 404) {
-          setPosts404(true);
-        }
-      }
-    };
-    refreshPosts();
-    const interval = setInterval(refreshPosts, 5000);
+    refreshPosts(courseId);
+    const interval = setInterval(() =>refreshPosts(courseId), 5000);
     return () => clearInterval(interval);
-  }, [courseId, setPosts]);
+  }, [courseId, refreshPosts]);
 
 
   useEffect(()=> {
@@ -48,7 +30,7 @@ export default function PostFeed() {
       } catch (error) {
         const status = error.response?.status;
         if (status === 404) {
-          setPosts404(true);
+          console.log('no posts found')
         }
       }
     }   
@@ -59,40 +41,29 @@ export default function PostFeed() {
   const sortedPosts = filteredPosts.sort((a, b) => a.created_at < b.created_at ? 1 : -1);
   const renderedPosts = sortedPosts.map(post => {
     const { id, title, content } = post;
-    const activeClass = id.toString() === postId ? feedStyles.active : '';
-    const classes = `${feedStyles.feedItem} ${activeClass}`;
+    const activeClass = id.toString() === postId ? 'active' : '';
+    const classes = `feedItem ${activeClass}`;
     return (
       <li key={`post-${id}`} className={classes}>
-        {/* <div className={feedStyles.feedItemTitle}>Needs an answer</div> */}
-        <Link className={feedStyles.linkStyle} to={`/courses/${courseId}/posts/${id}`}>
-          <article className={feedStyles.feedItemContent} tabIndex="0">
-           <div className={feedStyles.feedItemTitle}>
-             <h2 className={feedStyles.titleContent}>{title}</h2>
-             <p className={feedStyles.feedItemDate}>current date</p>
+        {/* <div className="feedItemTitle">Needs an answer</div> */}
+        <Link to={`/courses/${courseId}/posts/${id}`}>
+          <article tabIndex="0">
+            <div className="feedItemTitle">
+              <h2>{title}</h2>
+              <time>current date</time>
             </div>
-            <div className={feedStyles.questionPreview}>
-              <p className={feedStyles.previewContent}>{content.substring(0, 50)}</p>
+            <div className="feedItemContent">
+              <p>{content.substring(0, 50)}</p>
             </div>
-            <div id="tags" className={feedStyles.tags}>
-              <Tag></Tag>
-              <Tag></Tag>
-            </div>
+            <Tags tags={[{id:1,name:'Tag'},{id:2,name:'Tag'}]} />
           </article>
         </Link>
       </li>
     );
   });
 
-  if (posts404) {
-    return (
-      <ul id="post-feed" className={feedStyles.feed}>
-        <li>Posts not found!</li>
-      </ul>
-    );
-  }
-
   return (
-    <ul id="post-feed" role="feed" className={feedStyles.feed}>
+    <ul id="post-feed" role="feed" className="feed">
       {searchString ? <li> 
         <h2>Showing results: <emph>{searchString}</emph></h2> 
       </li> : null}

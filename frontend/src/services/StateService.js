@@ -45,6 +45,14 @@ export function StateServiceContextProvider(props) {
 		getUserData();
 	}, []);
 
+	const refreshPosts = async (courseId) => {
+		try {
+			setPosts(await ApiService.getCoursePosts(courseId));
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	// this is the object that will be returned by the `useStateService` hook
 	const contextValue = {
 		state: {
@@ -59,7 +67,7 @@ export function StateServiceContextProvider(props) {
 		actions: {
 			setUser,
 			setCourse,
-			setPosts,
+			refreshPosts,
 			setSearchString,
 			setShowModal,
 			setModalContent,

@@ -54,7 +54,7 @@ export default function PostForm({ post, response=false }) {
   const { pathname } = useLocation();
   const {
     state: { user },
-    actions: { setShowModal, setPosts },
+    actions: { setShowModal, refreshPosts },
   } = useStateService();
 
 	const courseId = pathname.match(/^\/courses\/([0-9]+)/)[1];
@@ -66,14 +66,6 @@ export default function PostForm({ post, response=false }) {
     setStudentAnswer(post?.student_answer || '');
   }, [post]);
 
-  const refreshPosts = async () => {
-    try {
-      setPosts(await ApiService.getCoursePosts(courseId));
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!title || !content) {
@@ -84,7 +76,7 @@ export default function PostForm({ post, response=false }) {
       const postData = {
         title,
         content, 
-        tags,
+        tags: tags.map(t => t.id),
         anonymous,
         visibility,
         type,
@@ -95,11 +87,12 @@ export default function PostForm({ post, response=false }) {
       // if post object is defined, then we are updating an existing post
       if (post) {
         await ApiService.patchPost(post.course.id, post.id, postData);
+        refreshPosts(post.course.id);
       } else {
         await ApiService.createPost(courseId, postData);
+        refreshPosts(courseId);
       }
       setShowModal(false);
-      refreshPosts();
     } catch (error) {
       const status = error.response?.status;
       console.error(`request failed with status code of ${status}`);
