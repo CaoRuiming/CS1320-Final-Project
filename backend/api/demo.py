@@ -73,6 +73,49 @@ def setup():
     )
     post2.save()
 
+    post3 = Post(
+        author=user3,
+        course=course1,
+        title="My code is broken",
+        content="Hi you can see my name, Student answers welcomed!!",
+        anonymous=False,
+        type=Post.Type.NOTE,
+        visibility=Post.Visibility.PUBLIC,
+    )
+    post3.save()
+
+    post4 = Post(
+        author=user2,
+        course=course1,
+        title="Could a TA help",
+        content="Only TAs should be able to see this",
+        anonymous=False,
+        type=Post.Type.NOTE,
+        visibility=Post.Visibility.PRIVATE,
+    )
+    post4.save()
+
+    post5 = Post(
+        author=user1,
+        course=course1,
+        title="TA Note about posting",
+        content="Hours Changed from 11 to 2",
+        anonymous=True,
+        type=Post.Type.NOTE,
+        visibility=Post.Visibility.PUBLIC,
+    )
+    post5.save()
+
+    post6 = Post(
+        author=user1,
+        course=course1,
+        title="Question to Students",
+        content="TA asking for student replies ",
+        anonymous=True,
+        type=Post.Type.QUESTION,
+        visibility=Post.Visibility.PUBLIC,
+    )
+    post6.save()
     # create tags
     tag1 = Tag(name="Tag 1", course=course1)
     tag1.save()
@@ -81,6 +124,8 @@ def setup():
 
     post1.tags.add(tag1, tag2)
     post2.tags.add(tag2)
+    post4.tags.add(tag1)
+    post6.tags.add(tag1, tag2)
 
     print("setup successful!")
     print("user passwords in order: " + str(passwords))
