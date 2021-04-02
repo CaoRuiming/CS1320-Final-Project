@@ -16,7 +16,6 @@ export default function Header() {
 		</Fragment>
 	);
 	
-	console.log(pathname);
 	return pathname !== "/home" ? (
 		<header>
 			<nav>

@@ -18,6 +18,17 @@ export function NewPostButton() {
   );
 }
 
+export function EditPostButton({ post }) {
+  const { actions: { setShowModal, setModalContent } } = useStateService();
+  const handleClick = () => {
+    setModalContent(<PostForm post={post} />);
+    setShowModal(true);
+  };
+  return (
+    <button id="edit-post-button" onClick={handleClick}>Edit Post</button>
+  );
+}
+
 export default function PostForm({ post, response=false }) {
   const originalPost = post ? post : {};
   const defaultValues = {

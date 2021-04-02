@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import ApiService from '../../services/ApiService';
-import PostForm from '../forms/PostForm';
+import PostForm, { EditPostButton } from '../forms/PostForm';
 import feedStyles from '../PostFeed/feedStyles.module.css';
 
 function Tag() {
@@ -48,9 +48,7 @@ export default function PostView() {
           <h2 className={feedStyles.viewTitle}>{title}</h2>
         </div>
         <div className={feedStyles.tags}>{tags.map(t => <Tag><span key={`tag-${t.id}`}>{t.name}</span> </Tag>)}</div>
-        <form name="editPost">
-          <button className={feedStyles.editPost}>Edit Post</button>
-        </form>
+        <EditPostButton post={postData} />
         <div className={feedStyles.postContentContainer}><p>{content}</p></div>
         {student_reply ? <div><p>{student_reply}</p></div> : null}
         {instructor_reply ? <div style={feedStyles.instructorReplyContainer}><p>{instructor_reply}</p></div> : null}
