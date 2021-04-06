@@ -28,7 +28,7 @@ export default function CourseList() {
   });
 
   return (
-    <main>
+    <main id="courses-page">
       <JoinCourseButton />
       <h2>Enrolled Courses</h2>
       {studentCourses.length ? <h3>Student Courses</h3> : null}

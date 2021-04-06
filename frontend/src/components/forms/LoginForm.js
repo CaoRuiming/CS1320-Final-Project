@@ -59,7 +59,10 @@ export default function LoginForm() {
         onKeyPress={handleSubmitOnEnter} required></input>
       
       {errorMessage ? <p className="error">{errorMessage}</p> : null}
-      <button onClick={handleSubmit}>Log In</button>
+
+      <div className="horizontal-center">
+        <button onClick={handleSubmit}>Log In</button>
+      </div>
     </form>
   );
 }

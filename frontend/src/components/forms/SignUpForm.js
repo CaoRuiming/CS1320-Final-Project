@@ -105,7 +105,10 @@ export default function SignUpForm() {
       </div>
       
       {message ? <p className="message">{message}</p> : null}
-      <button onClick={handleSubmit}>Sign Up</button>
+
+      <div>
+        <button onClick={handleSubmit}>Sign Up</button>
+      </div>
     </form>
   );
 }

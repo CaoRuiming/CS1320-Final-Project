@@ -4,7 +4,7 @@ import PostFeed from '../../components/PostFeed';
 import PostView from '../../components/PostView';
 import ApiService from '../../services/ApiService';
 import useStateService from '../../services/StateService';
-import styles from './courseStyles.module.css';
+import './style.scss';
 
 export default function Course() {
   const { courseId, postId } = useParams();
@@ -37,12 +37,12 @@ export default function Course() {
   }
 
   return (
-    <main className={styles.main}>
-      <section className={styles.leftSection}>
-      <h2 className="sr-only">Course Posts</h2>
+    <main id="course-page">
+      <section className="leftSection">
+        <h2 className="sr-only">Course Posts</h2>
         <PostFeed />
       </section>
-      <section className={styles.rightSection}>
+      <section className="rightSection">
         {postId ? <PostView /> : null}
       </section>
     </main>
