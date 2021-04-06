@@ -25,6 +25,7 @@ urlpatterns = [
     path("courses/<int:course_id>/join", CourseView.join),
     path("courses/<int:course_id>/leave", CourseView.leave),
     path("courses/<int:course_id>", CourseView.as_view()),
+    path("courses", CourseView.get_active_courses),
     # Post routes
     path("courses/<int:course_id>/posts/create", PostView.create),
     path("courses/<int:course_id>/posts/<int:post_id>", PostView.as_view()),

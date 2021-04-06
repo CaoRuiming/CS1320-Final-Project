@@ -23,6 +23,14 @@ form {
       margin: 0;
     }
   }
+
+  .error {
+    color: red;
+  }
+
+  .message {
+    color: green;
+  }
 }
 
 #login-form {
@@ -69,10 +77,6 @@ textarea {
   border: 1px solid #8E8E8E;
   border-radius: 5px;
   padding: 5px;
-}
-
-.error {
-  color: red;
 }
 
 #post-title{ 

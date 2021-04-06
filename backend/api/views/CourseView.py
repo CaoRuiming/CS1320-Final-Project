@@ -85,8 +85,8 @@ class CourseView(View):
         return HttpResponse("Course successfully deleted")
 
     @require_POST
-    @method_decorator(handle_nonexistence)
-    @method_decorator(authenticated)
+    @handle_nonexistence
+    @authenticated
     def join(request: HttpRequest, course_id: int) -> HttpResponse:
         """Add request's user to course as a student."""
         course = Course.objects.get(id=course_id)
@@ -133,3 +133,19 @@ class CourseView(View):
         course = Course.objects.get(id=course_id)
         tags = [TagService.tag_to_dict(x) for x in course.tags.all()]
         return HttpResponse(dumps(tags))
+
+    @require_GET
+    @handle_nonexistence
+    @authenticated
+    def get_active_courses(request: HttpRequest) -> HttpResponse:
+        """Get all tags under course."""
+        user = request.user
+        courses = Course.objects.filter(active=True).all()
+        result = []
+        for course in courses:
+            if (
+                not user in course.students.all()
+                and not user in course.instructors.all()
+            ):
+                result.append(CourseService.course_to_dict(course))
+        return HttpResponse(dumps(result))

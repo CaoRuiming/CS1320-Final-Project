@@ -21,6 +21,8 @@ export default function SignUpForm() {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+  const { actions: { setShowModal } } = useStateService();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -38,14 +40,18 @@ export default function SignUpForm() {
         password,
       };
       await ApiService.createUser(newUserData);
+      setMessage('Success!');
+      await (new Promise((res) => setTimeout(res, 1000)));
     } catch (error) {
       const status = error.response?.status;
       console.error(`request failed with status code of ${status}`);
+      return false;
     }
     setFirstName('');
     setLastName('');
     setEmail('');
     setPassword('');
+    setShowModal(false);
     return false;
   };
   const handleSubmitOnEnter = (event) => {
@@ -98,6 +104,7 @@ export default function SignUpForm() {
           onKeyPress={handleSubmitOnEnter} required></input>
       </div>
       
+      {message ? <p className="message">{message}</p> : null}
       <button onClick={handleSubmit}>Sign Up</button>
     </form>
   );

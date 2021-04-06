@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 import useStateService from '../../services/StateService';
+import { JoinCourseButton } from '../../components/forms/JoinCourseForm';
 import './style.scss';
 
 export default function CourseList() {
@@ -28,6 +29,7 @@ export default function CourseList() {
 
   return (
     <main>
+      <JoinCourseButton />
       <h2>Enrolled Courses</h2>
       {studentCourses.length ? <h3>Student Courses</h3> : null}
       {studentCourses.length ? <ul>{studentCourses}</ul> : null}

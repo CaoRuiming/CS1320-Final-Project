@@ -95,6 +95,17 @@ export default class ApiService {
   }
 
   /**
+   * Returns list of all active courses that a student can join.
+   * @returns list of all active courses
+   */
+  static async getCourses() {
+    if (noBackend) {
+      return [mockCourse];
+    }
+    return await genericGet('/courses');
+  }
+
+  /**
    * Return course data given an ID.
    * @param {Integer|String} courseId ID of course as string or int
    * @returns course object corresponding to courseId
@@ -104,6 +115,18 @@ export default class ApiService {
       return mockCourse;
     }
     return await genericGet(`/courses/${courseId}`);
+  }
+
+  /**
+   * Adds a student to an exixting course.
+   * @param {Integer|String} courseId ID of course to join as string or int
+   * @param {String} joinCode code to use to join a course
+   * @returns success message if successful, otherwise throws error
+   */
+  static async joinCourse(courseId, joinCode) {
+    const payload = { join_code: joinCode };
+    const res = await axiosInstance.post(`/courses/${courseId}/join`, payload);
+    return res.data;
   }
 
   /**
