@@ -51,9 +51,6 @@ export default function PostView() {
       );
       setShowModal(true);
     };
-    if (!label || !content) {
-      return null;
-    }
     return (
       <Fragment>
         <div className="flex-horizontal">
@@ -63,7 +60,7 @@ export default function PostView() {
           ) : null}
         </div>
         <div className="reply-container">
-          <p>{content}</p>
+          <p>{content || '   '}</p>
         </div>
       </Fragment>
     );

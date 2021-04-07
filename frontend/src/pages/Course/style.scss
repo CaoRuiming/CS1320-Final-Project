@@ -9,7 +9,6 @@ main#course-page {
   background-color: rgb(255, 255, 255);
 
   section {
-    flex-grow: 1;
     overflow-y: scroll;
     max-height: calc(100vh - #{$header-height});
   }
@@ -17,10 +16,13 @@ main#course-page {
   .leftSection {
     padding: 0;
     margin: 0;
+    width: 30%;
+    min-width: 300px;
   }
   
-  // .rightSection {
-  // }
+  .rightSection {
+    width: calc(100% - max(300px, 30%));
+  }
 }
 
 
