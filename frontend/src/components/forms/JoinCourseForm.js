@@ -20,7 +20,7 @@ export default function JoinCourseForm() {
   const [courseOptions, setCourseOptions] = useState(
     [<option value="">Loading...</option>]
   );
-  const [courseId, setCourseId] = useState(null);
+  const [courseId, setCourseId] = useState('');
   const [joinCode, setJoinCode] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
@@ -62,7 +62,7 @@ export default function JoinCourseForm() {
       return false;
     }
     setShowModal(false);
-    history.go(0);
+    history.go(0); // reloads the page
     return false;
   };
 
@@ -89,7 +89,10 @@ export default function JoinCourseForm() {
       </div>
       
       {errorMessage ? <p className="error">{errorMessage}</p> : null}
-      <button onClick={handleSubmit}>Join Course</button>
+
+      <div>
+        <button onClick={handleSubmit}>Join Course</button>
+      </div>
     </form>
   );
 }

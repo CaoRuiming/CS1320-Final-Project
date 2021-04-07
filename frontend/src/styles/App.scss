@@ -1,3 +1,9 @@
 header, main {
   padding: 0 20px;
 }
+
+.horizontal-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

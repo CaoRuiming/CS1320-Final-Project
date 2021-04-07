@@ -1,0 +1,26 @@
+@import '../../styles/variables.scss';
+
+main#course-page {
+  display: flex;
+  margin: 0; 
+  padding: 0; 
+  width: 100%; 
+  flex: 2; 
+  background-color: rgb(255, 255, 255);
+
+  section {
+    flex-grow: 1;
+    overflow-y: scroll;
+    max-height: calc(100vh - #{$header-height});
+  }
+
+  .leftSection {
+    padding: 0;
+    margin: 0;
+  }
+  
+  // .rightSection {
+  // }
+}
+
+
