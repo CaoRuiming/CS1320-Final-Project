@@ -16,28 +16,28 @@ article#postView{
     background-color:rgba(0, 84, 87, 0.541); 
     border-radius: 8px;
     padding: 10px;
+
+    *:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .reply-label {
+    margin-bottom: 0;
   }
   
-  .instructorReplyContainer{ 
+  .reply-container{ 
     min-height: 100px; 
-    background-color:rgba(213, 254, 255, 0.699); 
+    // background-color:rgba(213, 254, 255, 0.699); 
+    background-color:white; 
     border-radius: 8px; 
     margin-top: 5px; 
-    padding: 2px;
+    padding: 10px;
     color: black;
-  }
 
-  .responseFormTitle{ 
-    padding: 0; 
-    margin: 0; 
-    margin-top: 30px; 
-    margin-bottom: 5px; 
-  }
-
-  .responseForm {
-    height: 140px; 
-    line-height: 20px;
-    width: auto; 
+    *:first-child {
+      margin-top: 0;
+    }
   }
 
   #edit-post-button {
@@ -50,6 +50,7 @@ article#postView{
     width: 100px; 
     align-self: flex-start;
     justify-self: flex-end;
-    margin-top: 30px
+    margin-top: 30px;
+    margin-bottom: 10px;
   }
 }

@@ -18,7 +18,8 @@ export default function PostFeed() {
     refreshPosts(courseId);
     const interval = setInterval(() =>refreshPosts(courseId), 5000);
     return () => clearInterval(interval);
-  }, [courseId, refreshPosts]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [courseId]);
 
 
   useEffect(()=> {
@@ -30,7 +31,7 @@ export default function PostFeed() {
       } catch (error) {
         const status = error.response?.status;
         if (status === 404) {
-          console.log('no posts found')
+          console.error('no posts found')
         }
       }
     }   
@@ -48,7 +49,7 @@ export default function PostFeed() {
         {/* <div className="feedItemTitle">Needs an answer</div> */}
         <Link to={`/courses/${courseId}/posts/${id}`}>
           <article tabIndex="0">
-            <div className="feedItemTitle">
+            <div className="feedItemTitle flex-horizontal">
               <h2>{title}</h2>
               <time>current date</time>
             </div>

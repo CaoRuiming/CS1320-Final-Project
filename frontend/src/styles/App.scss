@@ -7,3 +7,10 @@ header, main {
   flex-direction: column;
   align-items: center;
 }
+
+.flex-horizontal {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}

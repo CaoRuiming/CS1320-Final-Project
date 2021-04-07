@@ -49,7 +49,6 @@ export default function JoinCourseForm() {
     event.preventDefault();
     setErrorMessage('');
     try {
-      console.log(courseId,joinCode);
       await ApiService.joinCourse(courseId, joinCode);
     } catch (error) {
       const status = error.response?.status;
