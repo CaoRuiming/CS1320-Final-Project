@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router';
 import ApiService from '../../services/ApiService';
 import useStateService from '../../services/StateService';
@@ -18,10 +18,10 @@ export function NewPostButton() {
   );
 }
 
-export function EditPostButton({ post }) {
+export function EditPostButton(props) {
   const { actions: { setShowModal, setModalContent } } = useStateService();
   const handleClick = () => {
-    setModalContent(<PostForm post={post} />);
+    setModalContent(<PostForm {...props} />);
     setShowModal(true);
   };
   return (
@@ -29,7 +29,7 @@ export function EditPostButton({ post }) {
   );
 }
 
-export default function PostForm({ post, response=false }) {
+export default function PostForm({ post, onSubmit=() => {} }) {
   const originalPost = post ? post : {};
   const defaultValues = {
     title: '',
@@ -49,22 +49,12 @@ export default function PostForm({ post, response=false }) {
   const [anonymous, setAnonymous] = useState(startingValues.anonymous);
   const [visibility, setVisibility] = useState(startingValues.visibility);
   const [type, setType] = useState(startingValues.type);
-  const [studentAnswer, setStudentAnswer] = useState(startingValues.student_answer);
-  const [instructorAnswer, setInstructorAnswer] = useState(startingValues.student_answer);
   const { pathname } = useLocation();
   const {
-    state: { user },
     actions: { setShowModal, refreshPosts },
   } = useStateService();
 
 	const courseId = pathname.match(/^\/courses\/([0-9]+)/)[1];
-  const isInstructor = !!(post?.course?.instructors?.find(x => x.id === user.id));
-
-  // used for the post response form
-  useEffect(() => {
-    setInstructorAnswer(post?.instructor_answer || '');
-    setStudentAnswer(post?.student_answer || '');
-  }, [post]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -80,8 +70,6 @@ export default function PostForm({ post, response=false }) {
         anonymous,
         visibility,
         type,
-        student_answer: studentAnswer,
-        instructor_answer: instructorAnswer,
       };
 
       // if post object is defined, then we are updating an existing post
@@ -92,6 +80,7 @@ export default function PostForm({ post, response=false }) {
         await ApiService.createPost(courseId, postData);
         refreshPosts(courseId);
       }
+      onSubmit();
       setShowModal(false);
     } catch (error) {
       const status = error.response?.status;
@@ -99,29 +88,6 @@ export default function PostForm({ post, response=false }) {
     }
     return false;
   };
-
-  if (response) {
-    return (
-      <form id="post-response-form" >
-        <label htmlFor="post-response">
-          <h3>Reply to the Post:</h3>
-        </label>
-        <textarea
-          id="post-response"
-          value={isInstructor ? instructorAnswer : studentAnswer}
-          onChange={e => {
-            if (isInstructor) {
-              setInstructorAnswer(e.target.value);
-            } else {
-              setStudentAnswer(e.target.value);
-            }
-          }}
-          placeholder="Add to the discussion"></textarea>
-        
-        <button onClick={handleSubmit}>Save Response</button>
-      </form>
-    );
-  }
 
   return (
     <form id="post-form" onSubmit={handleSubmit}>

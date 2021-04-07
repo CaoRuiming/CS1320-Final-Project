@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory, useLocation } from 'react-router';
+import React, { useState } from 'react';
 import ApiService from '../../services/ApiService';
 import useStateService from '../../services/StateService';
 import './style.scss';

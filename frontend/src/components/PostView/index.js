@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Fragment } from 'react';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import ApiService from '../../services/ApiService';
 import useStateService from '../../services/StateService';
 import AnswerForm from '../forms/AnswerForm';
@@ -27,6 +27,7 @@ export default function PostView() {
 
   useEffect(() => {
     getPostData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseId, postId]);
 
   if (!postData) {
@@ -66,11 +67,15 @@ export default function PostView() {
     );
   };
 
+  const hasEditPermission = isInstructor || postData.author.id === user.id;
+
   return (
     <article id="postView">
       <h2 className="viewTitle">{title}</h2>
       <Tags tags={tags} />
-      <EditPostButton post={postData} />
+      {hasEditPermission ? (
+        <EditPostButton post={postData} onSubmit={getPostData} />
+      ) : null}
       <div className="postViewContent"><p>{content}</p></div>
       <Answer label="Instructor Answer" content={instructor_answer} instructor={true} />
       <Answer label="Student Answer" content={student_answer} />

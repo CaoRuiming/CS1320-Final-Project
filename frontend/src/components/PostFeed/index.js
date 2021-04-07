@@ -48,7 +48,7 @@ export default function PostFeed() {
       <li key={`post-${id}`} className={classes}>
         {/* <div className="feedItemTitle">Needs an answer</div> */}
         <Link to={`/courses/${courseId}/posts/${id}`}>
-          <article tabIndex="0">
+          <article>
             <div className="feedItemTitle flex-horizontal">
               <h2>{title}</h2>
               <time>current date</time>
