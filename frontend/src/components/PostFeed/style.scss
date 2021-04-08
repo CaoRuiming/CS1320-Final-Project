@@ -18,6 +18,9 @@
     min-height: 100px;
     width: 100%; 
 
+    &.unanswered {
+      background-color: rgb(255, 241, 241);
+    }
     &.active {
       background-color: rgb(233, 233, 233);
     }
@@ -26,6 +29,7 @@
       padding: 10px;
       flex:1;  
       text-decoration: none;
+
 
       h2 {
         padding: 0px; 

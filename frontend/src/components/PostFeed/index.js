@@ -42,9 +42,13 @@ export default function PostFeed() {
   const filteredPosts = (searchString ? searchedPosts : posts);
   const sortedPosts = filteredPosts.sort((a, b) => a.created_at < b.created_at ? 1 : -1);
   const renderedPosts = sortedPosts.map(post => {
-    const { id, title, content, tags, created_at } = post;
+    const {
+      id, title, content, tags, created_at, student_answer, instructor_answer
+    } = post;
     const activeClass = id.toString() === postId ? 'active' : '';
-    const classes = `feedItem ${activeClass}`;
+    const unanswered = !student_answer && !instructor_answer;
+    const unansweredClass = unanswered ? 'unanswered' : '';
+    const classes = `feedItem ${activeClass} ${unansweredClass}`;
     const createdDate = moment(created_at);
     const dateFormat = createdDate.isSame(moment(), 'day') ? 'h:mm a' : 'l';
     return (
