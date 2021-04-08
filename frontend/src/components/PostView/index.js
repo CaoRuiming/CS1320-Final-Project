@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Fragment } from 'react';
 import { useParams } from 'react-router';
+import moment from 'moment';
 import ApiService from '../../services/ApiService';
 import useStateService from '../../services/StateService';
 import AnswerForm from '../forms/AnswerForm';
@@ -37,7 +38,9 @@ export default function PostView() {
     return <article><h2>Post not found</h2></article>;
   }
 
-  const { title, content, tags, student_answer, instructor_answer } = postData;
+  const {
+    title, content, tags, student_answer, instructor_answer, created_at
+  } = postData;
 
   const isInstructor = !!(course?.instructors?.find(x => x.id === user.id));
   const Answer = function({label, content, instructor=false}) {
@@ -71,7 +74,10 @@ export default function PostView() {
 
   return (
     <article id="postView">
-      <h2 className="viewTitle">{title}</h2>
+      <div className="flex-horizontal">
+        <h2 className="viewTitle">{title}</h2>
+        <time>{moment(created_at).format('LLL')}</time>
+      </div>
       <Tags tags={tags} />
       {hasEditPermission ? (
         <EditPostButton post={postData} onSubmit={getPostData} />

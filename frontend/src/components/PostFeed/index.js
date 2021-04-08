@@ -42,7 +42,7 @@ export default function PostFeed() {
   const filteredPosts = (searchString ? searchedPosts : posts);
   const sortedPosts = filteredPosts.sort((a, b) => a.created_at < b.created_at ? 1 : -1);
   const renderedPosts = sortedPosts.map(post => {
-    const { id, title, content, created_at } = post;
+    const { id, title, content, tags, created_at } = post;
     const activeClass = id.toString() === postId ? 'active' : '';
     const classes = `feedItem ${activeClass}`;
     const createdDate = moment(created_at);
@@ -59,7 +59,7 @@ export default function PostFeed() {
             <div className="feedItemContent">
               <p>{content.substring(0, 50)}</p>
             </div>
-            <Tags tags={[{id:1,name:'Tag'},{id:2,name:'Tag'}]} />
+            <Tags tags={tags} />
           </article>
         </Link>
       </li>
