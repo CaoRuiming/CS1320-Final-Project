@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Fragment } from 'react';
-import { useHistory, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import ApiService from '../../services/ApiService';
 import useStateService from '../../services/StateService';
 import AnswerForm from '../forms/AnswerForm';

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import moment from 'moment';
 import ApiService from '../../services/ApiService';
 import useStateService from '../../services/StateService';
 import Tags from '../Tags';
@@ -41,9 +42,11 @@ export default function PostFeed() {
   const filteredPosts = (searchString ? searchedPosts : posts);
   const sortedPosts = filteredPosts.sort((a, b) => a.created_at < b.created_at ? 1 : -1);
   const renderedPosts = sortedPosts.map(post => {
-    const { id, title, content } = post;
+    const { id, title, content, created_at } = post;
     const activeClass = id.toString() === postId ? 'active' : '';
     const classes = `feedItem ${activeClass}`;
+    const createdDate = moment(created_at);
+    const dateFormat = createdDate.isSame(moment(), 'day') ? 'h:mm a' : 'l';
     return (
       <li key={`post-${id}`} className={classes}>
         {/* <div className="feedItemTitle">Needs an answer</div> */}
@@ -51,7 +54,7 @@ export default function PostFeed() {
           <article>
             <div className="feedItemTitle flex-horizontal">
               <h2>{title}</h2>
-              <time>current date</time>
+              <time>{createdDate.format(dateFormat)}</time>
             </div>
             <div className="feedItemContent">
               <p>{content.substring(0, 50)}</p>
