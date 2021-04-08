@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router';
-import Select from 'react-select';
+import CreatableSelect from 'react-select/creatable';
 import ApiService from '../../services/ApiService';
 import useStateService from '../../services/StateService';
 import { VISIBILITY, POST_TYPE } from '../../utils/constants';
@@ -71,6 +71,12 @@ export default function PostForm({ post, onSubmit=() => {} }) {
     };
     getTagOptions();
   }, [setTagOptions, courseId]);
+
+  const handleCreateTag = async (newTagName) => {
+    const newTag = await ApiService.createTag(courseId, { name: newTagName });
+    setTags([...tags, newTag.id]);
+    setTagOptions([...tagOptions, { value: newTag.id, label: newTag.name }]);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -179,12 +185,13 @@ export default function PostForm({ post, onSubmit=() => {} }) {
 
       <div>
         <label htmlFor="tag-selection">Tags</label>
-        <Select
+        <CreatableSelect
           id="tag-selection"
           value={tagOptions.filter(x => tags.includes(x.value))}
           onChange={opts => setTags(opts.map(x => x.value))}
+          onCreateOption={handleCreateTag}
           options={tagOptions}
-          isMulti={true}
+          isMulti
           required
         />
       </div>

@@ -236,7 +236,7 @@ export default class ApiService {
    */
   static async createTag(courseId, newTagData={}) {
     const url = `/courses/${courseId}/tags/create`;
-    const res = await axios.post(url, newTagData)
+    const res = await axiosInstance.post(url, newTagData)
     return res.data;
   }
 
