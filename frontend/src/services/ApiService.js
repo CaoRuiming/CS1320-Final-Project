@@ -211,7 +211,7 @@ export default class ApiService {
     if (noBackend) {
       return mockCourseTags;
     }
-    return await genericGet(`/course/${courseId}/tags`);
+    return await genericGet(`/courses/${courseId}/tags`);
   }
 
   /**

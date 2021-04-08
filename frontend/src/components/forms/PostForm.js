@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router';
+import Select from 'react-select';
 import ApiService from '../../services/ApiService';
 import useStateService from '../../services/StateService';
 import { VISIBILITY, POST_TYPE } from '../../utils/constants';
@@ -42,10 +43,12 @@ export default function PostForm({ post, onSubmit=() => {} }) {
     student_answer: '',
   };
   const startingValues = { ...defaultValues, ...originalPost };
+  startingValues.tags = startingValues.tags.map(t => t.id);
 
   const [title, setTitle] = useState(startingValues.title);
   const [content, setContent] = useState(startingValues.content);
   const [tags, setTags] = useState(startingValues.tags);
+  const [tagOptions, setTagOptions] = useState([]);
   const [anonymous, setAnonymous] = useState(startingValues.anonymous);
   const [visibility, setVisibility] = useState(startingValues.visibility);
   const [type, setType] = useState(startingValues.type);
@@ -55,6 +58,19 @@ export default function PostForm({ post, onSubmit=() => {} }) {
   } = useStateService();
 
 	const courseId = pathname.match(/^\/courses\/([0-9]+)/)[1];
+
+  useEffect(() => {
+    const getTagOptions = async() => {
+      try {
+        const tags = await ApiService.getCourseTags(courseId);
+        const options = tags.map(t => ({ value: t.id, label: t.name }));
+        setTagOptions(options);
+      } catch (error) {
+        console.error('failed to get tags', error);
+      }
+    };
+    getTagOptions();
+  }, [setTagOptions, courseId]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -66,7 +82,7 @@ export default function PostForm({ post, onSubmit=() => {} }) {
       const postData = {
         title,
         content, 
-        tags: tags.map(t => t.id),
+        tags,
         anonymous,
         visibility,
         type,
@@ -159,6 +175,18 @@ export default function PostForm({ post, onSubmit=() => {} }) {
           checked={anonymous}
           onChange={e => setAnonymous(e.target.checked)}></input>
         <label htmlFor="post-anonymous">Enable Anonymity</label>
+      </div>
+
+      <div>
+        <label htmlFor="tag-selection">Tags</label>
+        <Select
+          id="tag-selection"
+          value={tagOptions.filter(x => tags.includes(x.value))}
+          onChange={opts => setTags(opts.map(x => x.value))}
+          options={tagOptions}
+          isMulti={true}
+          required
+        />
       </div>
 
       <div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import Select from 'react-select';
 import ApiService from '../../services/ApiService';
 import useStateService from '../../services/StateService';
 
@@ -17,9 +18,7 @@ export function JoinCourseButton() {
 }
 
 export default function JoinCourseForm() {
-  const [courseOptions, setCourseOptions] = useState(
-    [<option value="">Loading...</option>]
-  );
+  const [courseOptions, setCourseOptions] = useState([]);
   const [courseId, setCourseId] = useState('');
   const [joinCode, setJoinCode] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -30,10 +29,7 @@ export default function JoinCourseForm() {
     const getCourseOptions = async() => {
       try {
         const courses = await ApiService.getCourses();
-        const options = courses.map(c => (
-          <option value={c.id}>{c.name}</option>
-        ));
-        options.unshift(<option value="">Choose a Course</option>);
+        const options = courses.map(c => ({ value: c.id, label: c.name }));
         setCourseOptions(options);
       } catch (error) {
         const status = error.response?.status;
@@ -69,12 +65,13 @@ export default function JoinCourseForm() {
     <form id="join-course-form" onSubmit={handleSubmit}>
       <div>
         <label htmlFor="join-course-id">Course</label>
-        <select
+        <Select
           id="join-course-id"
-          value={courseId}
-          onChange={e => setCourseId(e.target.value)} required>
-          {courseOptions}
-        </select>
+          value={courseOptions.find(x => x.value === courseId)}
+          onChange={opt => setCourseId(opt.value)}
+          options={courseOptions}
+          required
+        />
       </div>
 
       <div>
