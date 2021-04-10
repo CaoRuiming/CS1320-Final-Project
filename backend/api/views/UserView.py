@@ -77,7 +77,7 @@ class UserView(View):
         return HttpResponse("Success")
 
     @require_POST
-    @method_decorator(handle_nonexistence)
+    @method_decorator(handle_nonexistence) 
     def login(request: HttpRequest) -> HttpResponse:
         """Logs in the requests user."""
         user = UserService.login(request)
