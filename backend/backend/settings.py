@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = getenv('SECRET_KEY', 'test')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(getenv('DEBUG'), False)
+DEBUG = bool(getenv('DEBUG', False))
 
 ALLOWED_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1', 'backend']
 
