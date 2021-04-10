@@ -122,7 +122,9 @@ class CourseView(View):
                 or post.author == user
                 or user in course.instructors.all()
             ):
-                posts.append(PostService.post_to_dict(post))
+                dictionary = PostService.post_to_dict(post)
+                dictionary["read"] = request.user in post.read_by.all()
+                posts.append(dictionary)
         return HttpResponse(dumps(posts))
 
     @require_GET

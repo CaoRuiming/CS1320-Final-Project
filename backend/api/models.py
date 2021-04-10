@@ -67,7 +67,23 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
     instructor_answer = models.TextField(blank=True)
+    instructor_answer_author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        default=None,
+        on_delete=models.SET_NULL,
+        related_name="instructor_answer_author",
+    )
     student_answer = models.TextField(blank=True)
+    student_answer_author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        blank=True,
+        default=None,
+        on_delete=models.SET_NULL,
+        related_name="student_answer_author",
+    )
     parent = models.ForeignKey(
         "Post",
         on_delete=models.CASCADE,
@@ -86,6 +102,7 @@ class Post(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    read_by = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="read_by")
 
 
 class Tag(models.Model):

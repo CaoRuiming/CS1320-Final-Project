@@ -43,7 +43,7 @@ export default function PostFeed() {
   const sortedPosts = filteredPosts.sort((a, b) => a.created_at < b.created_at ? 1 : -1);
   const renderedPosts = sortedPosts.map(post => {
     const {
-      id, title, content, tags, created_at, student_answer, instructor_answer
+      id, title, content, tags, created_at, student_answer, instructor_answer, read
     } = post;
     const activeClass = id.toString() === postId ? 'active' : '';
     const unanswered = !student_answer && !instructor_answer;
@@ -63,7 +63,10 @@ export default function PostFeed() {
             <div className="feedItemContent">
               <p>{content.substring(0, 50)}</p>
             </div>
-            <Tags tags={tags} />
+            <div className="flex-horizontal">
+              {tags.length ? <Tags tags={tags} /> : <div></div>}
+              {read ? null : <span class="unread-dot"></span>}
+            </div>
           </article>
         </Link>
       </li>

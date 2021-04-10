@@ -13,7 +13,9 @@ export default function PostView() {
   const { courseId, postId } = useParams();
   const [postData, setPostData] = useState(null);
   const [post404, setPost404] = useState(false);
-  const { state: { course, user } } = useStateService();
+  const {
+    state: { course, user }, actions: { refreshPosts }
+  } = useStateService();
 
   const getPostData = async () => {
     try {
@@ -28,6 +30,7 @@ export default function PostView() {
 
   useEffect(() => {
     getPostData();
+    refreshPosts(courseId);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseId, postId]);
 
@@ -39,11 +42,18 @@ export default function PostView() {
   }
 
   const {
-    title, content, tags, student_answer, instructor_answer, created_at
+    title,
+    content,
+    tags,
+    student_answer,
+    student_answer_author,
+    instructor_answer,
+    instructor_answer_author,
+    created_at
   } = postData;
 
   const isInstructor = !!(course?.instructors?.find(x => x.id === user.id));
-  const Answer = function({label, content, instructor=false}) {
+  const Answer = function({label, author='', content, instructor=false}) {
     const { actions: { setShowModal, setModalContent } } = useStateService();
     const handleClick = () => {
       setModalContent(
@@ -58,7 +68,7 @@ export default function PostView() {
     return (
       <Fragment>
         <div className="flex-horizontal">
-          <h3 className="reply-label">{label}</h3>
+          <h3 className="reply-label">{label}{author ? ` by ${author}` : ''}</h3>
           {((isInstructor && instructor) || !instructor) ? (
             <button onClick={handleClick}>Edit</button>
           ) : null}
@@ -83,8 +93,17 @@ export default function PostView() {
         <EditPostButton post={postData} onSubmit={getPostData} />
       ) : null}
       <div className="postViewContent"><p>{content}</p></div>
-      <Answer label="Instructor Answer" content={instructor_answer} instructor={true} />
-      <Answer label="Student Answer" content={student_answer} />
+      <Answer
+        label="Instructor Answer"
+        author={instructor_answer_author?.name}
+        content={instructor_answer}
+        instructor={true}
+      />
+      <Answer
+        label="Student Answer"
+        author={student_answer_author?.name}
+        content={student_answer}
+      />
     </article>
   );
 }

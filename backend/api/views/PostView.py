@@ -44,6 +44,7 @@ class PostView(View):
     def get(self, request: HttpRequest, course_id: int, post_id: int) -> HttpResponse:
         """Return post data."""
         post = Post.objects.get(id=post_id)
+        post.read_by.add(request.user)
         return HttpResponse(dumps(PostService.post_to_dict(post)))
 
     @method_decorator(permissioned)
@@ -63,6 +64,8 @@ class PostView(View):
         for key in student_updateable_keys:
             if key in updated_values:
                 setattr(post, key, updated_values[key])
+        if "student_answer" in updated_values:
+            post.student_answer_author = request.user
         if "tags" in updated_values:
             post.tags.clear()
             new_tags = Tag.objects.filter(id__in=updated_values["tags"])
@@ -87,6 +90,8 @@ class PostView(View):
             for key in instructor_updateable_keys:
                 if key in updated_values:
                     setattr(post, key, updated_values[key])
+            if "instructor_answer" in updated_values:
+                post.instructor_answer_author = request.user
 
         post.save()
         return HttpResponse(dumps(PostService.post_to_dict(post)))
