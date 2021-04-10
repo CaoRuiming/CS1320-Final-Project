@@ -128,14 +128,18 @@ class PostService:
     def post_to_dict(post: Post, is_instructor: bool = False) -> Dict[str, Any]:
         """Converts a post model into a Dict for the API to return."""
 
-        def user_to_dict(u: User, anon: bool = False) -> Dict:
+        def user_to_dict(u: User, anon: bool = False) -> Optional[Dict]:
+            if not u:
+                return None
             hide_user = anon and not is_instructor
-            return {
+            dictionary = {
                 "id": u.id,
                 "first_name": "Anonymous" if hide_user else u.first_name,
                 "last_name": "User" if hide_user else u.last_name,
                 "email": "" if hide_user else u.email,
             }
+            dictionary["name"] = f"{dictionary['first_name']} {dictionary['last_name']}"
+            return dictionary
 
         def course_to_dict(c: Course) -> Dict[str, Union[int, str]]:
             return {
@@ -155,7 +159,9 @@ class PostService:
             "title": post.title,
             "content": post.content,
             "instructor_answer": post.instructor_answer,
+            "instructor_answer_author": user_to_dict(post.instructor_answer_author),
             "student_answer": post.student_answer,
+            "student_answer_author": user_to_dict(post.student_answer_author),
             "anonymous": post.anonymous,
             "type": post.type,
             "visibility": post.visibility,

@@ -67,6 +67,10 @@ class UserView(View):
         )
         if payload.get("email", False):
             new_user.email = payload["email"]
+        if payload.get("first_name", False):
+            new_user.first_name = payload["first_name"]
+        if payload.get("last_name", False):
+            new_user.last_name = payload["last_name"]
         new_user.save()
         return HttpResponse(dumps(UserService.user_to_dict(new_user)), status=201)
 

@@ -1,8 +1,10 @@
 from django.test import TestCase
-from api.models import Tag, Course, Post, UserSettings
+from api import models
 
-# Create your tests here.
-class UserSettingsTestCase(TestCase):
+# # Create your tests here.
+# class UserSettingsTestCase(TestCase):
 
     # def setUp():
-    ...
+    
+#     # def setUp():
+#         #user = models.UserSettings.create(user=)
