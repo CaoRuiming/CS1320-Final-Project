@@ -159,3 +159,17 @@ In the event something goes terribly wrong and you want to start from a clean sl
 - shut down all of the containers through the command `docker-compose down -v` to wipe PostgreSQL data
     - alternatively, you could manually delete the database data stored by Docker by running `docker volume rm <name of project directory>_db_data`
 - find the image id for this project's backend container image through `docker images` and then run `docker rmi <backend-image-id>` to delete it
+
+## Individual Contributions
+
+- Raymond
+    - configured Docker to run project
+    - connected frontend and backend of project
+    - implemented all Django models
+    - implemented all Django view for API except for search
+    - implemented most frontend React components and connected them to API
+    - converted styling for frontend to SCSS
+- Ambika
+    - 
+- Charles
+    - 
