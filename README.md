@@ -163,11 +163,13 @@ In the event something goes terribly wrong and you want to start from a clean sl
 ## Individual Contributions
 
 - Raymond
+    - wrote README and documentation
     - configured Docker to run project
     - connected frontend and backend of project
     - implemented all Django models
-    - implemented all Django view for API except for search
+    - implemented all Django views for API except for search
     - implemented most frontend React components and connected them to API
+    - implemented all frontend and backend service classes
     - converted styling for frontend to SCSS
 - Ambika
     - 
