@@ -38,13 +38,15 @@ export default function Course() {
 
   return (
     <main id="course-page">
-      <section className="leftSection">
-        <h2 className="sr-only">Course Posts</h2>
-        <PostFeed />
-      </section>
-      <section className="rightSection">
-        {postId ? <PostView /> : null}
-      </section>
+        <div className="row" id="row-section">
+          <section id="leftSection" className="col-md-5">
+              <h2 className="sr-only">Course Posts</h2>
+              <PostFeed />
+          </section>
+          <section id="rightSection" className="col-md-7" >
+            {postId ? <PostView /> : null}
+          </section>
+        </div>
     </main>
   );
 }
