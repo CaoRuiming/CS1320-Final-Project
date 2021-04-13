@@ -18,7 +18,7 @@ class TestUserSettings(TestCase):
             name = "testcourse1",
             active = True,
         )
-       
+        self.course.
         self.test_user_data = {
             'username' : 'TestUser',
             'password' : '12345',
@@ -28,9 +28,9 @@ class TestUserSettings(TestCase):
         }
         self.c = Client()
         self.user = User.objects.create_user(username='TestUser', password='12345')
-        self.registerClient = self.c.post(reverse('register'),dumps(self.test_user_data), content_type="application/json")
-        self.c.login(HttpRequest, self.user())
-        self.assertEqual(self.registerClient.status_code, 201)
+        self.registerClient = self.c.login(HttpRequest,username=self.test_user_data['username'], password=self.test_user_data['password'])
+       
+       # self.assertEqual(self.registerClient.status_code, 201)
         
 
     def testJoinCourse(self):
@@ -39,7 +39,7 @@ class TestUserSettings(TestCase):
 
     def testPrivatePost(self):
         response=self.client.post(self.login_url, dumps(self.test_user_data), content_type="application/json" )
-        
+        models.Post.objects.create_post(user=self.registerClient)
         print(response)
 
         
