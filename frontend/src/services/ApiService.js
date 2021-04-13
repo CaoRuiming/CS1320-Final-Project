@@ -198,7 +198,7 @@ export default class ApiService {
    */
   static async deletePost(courseId, postId) {
     const url = `/courses/${courseId}/posts/${postId}`;
-    const res = await axiosInstance(url);
+    const res = await axiosInstance.delete(url);
     return res.data;
   }
 
