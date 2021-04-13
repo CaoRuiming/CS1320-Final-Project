@@ -34,7 +34,6 @@ class LoginTest(BaseTest):
         self.assertEqual(response.status_code, 405)
 
     def test_login_user(self):
-
         response=self.client.post(self.login_url, json.dumps(self.invalid_credentials), content_type="application/json" )
         self.assertEqual(response.status_code, 406)
 
