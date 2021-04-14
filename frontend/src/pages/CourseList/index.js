@@ -29,12 +29,18 @@ export default function CourseList() {
 
   return (
     <main id="courses-page">
+      <div id="courses-list">
+        <div id="enrolled-courses">
+          <h2 >Enrolled Courses</h2>
+        </div>
+        <div className="sub-courses">
+          {studentCourses.length ? <h3>Student Courses</h3> : null}
+          {studentCourses.length ? <ul className="sub-courses-list"><div className="single-course">{studentCourses}</div></ul> : null}
+        </div>
+        {instructorCourses.length ? <h3>Instructor Courses</h3> : null}
+        {instructorCourses.length ? <ul className="sub-courses-list"><div className="single-course">{instructorCourses}</div></ul> : null}
+      </div>
       <JoinCourseButton />
-      <h2>Enrolled Courses</h2>
-      {studentCourses.length ? <h3>Student Courses</h3> : null}
-      {studentCourses.length ? <ul>{studentCourses}</ul> : null}
-      {instructorCourses.length ? <h3>Instructor Courses</h3> : null}
-      {instructorCourses.length ? <ul>{instructorCourses}</ul> : null}
     </main>
   );
 }

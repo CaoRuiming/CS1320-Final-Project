@@ -4,7 +4,7 @@ main#course-page {
   display: flex;
   margin: 0; 
   padding: 0; 
-  width: 100%; 
+  width: 100vw; 
   flex: 2; 
   background-color: rgb(255, 255, 255);
 
@@ -14,15 +14,32 @@ main#course-page {
     min-width: 300px;
   }
 
-  .leftSection {
-    padding: 0;
-    margin: 0;
-    width: 30%;
+  #leftSection {
+    padding: 0px;
+    margin-left: 0px;   
   }
   
-  .rightSection {
-    width: calc(100% - max(300px, 30%));
+  #rightSection {
+    padding: 0px; 
+    margin: 0px; 
   }
+
+  #row-section{ 
+    width: 100%;
+    padding: 0; 
+    margin: 0; 
+  }
+
+  @media (max-width: 767.98px) { 
+      #leftSection{ 
+        max-height: 35vh; 
+      }
+
+      #rightSection{ 
+        height: auto; 
+      }
+   }; 
+
 }
 
 
