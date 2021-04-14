@@ -23,7 +23,7 @@ export default function Main() {
 
 	return (
 		<div>
-			<a href="#main-content"> </a>
+			<a href="#main-content">Skip Navigation</a>
 			<Header />
 			
 			<div id="main-content"></div>
