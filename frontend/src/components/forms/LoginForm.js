@@ -61,7 +61,7 @@ export default function LoginForm() {
       {errorMessage ? <p className="error">{errorMessage}</p> : null}
 
       <div className="horizontal-center">
-        <button onClick={handleSubmit}>Log In</button>
+        <button onClick={handleSubmit} style={{padding:"0", minWidth:"90px"}}>Log In</button>
       </div>
     </form>
   );
