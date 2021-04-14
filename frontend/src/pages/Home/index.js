@@ -15,12 +15,12 @@ export default function Home() {
 
 	return (
 		<main id="home-page">
-			<div className="home-base" >
-				<div className="left-section">
+			<div id="home-base" className="row" >
+				<div id="left-section" className="col-md-8">
 					<h1>Discourse</h1>
 					<p>Learn Together</p>
 				</div>
-				<div className="right-section">
+				<div id="right-section" className="col-md-4 ">
 					<LoginForm />
 					<div className="horizontal-center">
 						<p>or</p>
