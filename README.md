@@ -4,6 +4,8 @@ Discourse is a final project for the class [CSCI 1320: Modern Web & Mobile Appli
 
 The goal of Discourse is to create an open source Q&A Discussion Board web application comparable to [Piazza](https://piazza.com/), [CampusWire](https://campuswire.com), and [Ed Discussion](https://edstem.org/).
 
+A link to a live instance of Discourse (running on AWS) is available in [our final project presentation](https://docs.google.com/presentation/d/1vJCJEn0jl3eh1qKi5y8XlSV0LUbEeheG6mihqp0f37U/edit#slide=id.gd0a994cd20_4_0).
+
 Technologies used:
 - [React](https://reactjs.org) for the frontend via [Create React App](https://create-react-app.dev)
 - [Django](https://www.djangoproject.com) for the backend/API

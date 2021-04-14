@@ -23,7 +23,10 @@ export default function Main() {
 
 	return (
 		<div>
+			<a href="#main-content">Skip Navigation</a>
 			<Header />
+			
+			<div id="main-content"></div>
 			<Switch>
 				<Route path="/home" component={Home} />
 				<Route path="/courses/:courseId/posts/:postId" component={Course} />
