@@ -19,8 +19,8 @@ export default function Header() {
 	return pathname !== "/home" ? (
 		<header>
 			<nav>
-				<div>
-					<ul>
+				<div style={{display: "flex", alignItems: "center"}}>
+					<ul style={{padding: "0", margin:"0"}}>
 						<li>
 							<Link to="/home">
 								<h1 id="header-logo" className="logo">Discourse</h1>

@@ -33,7 +33,7 @@ export default function Profile() {
       <p><strong>Last Name:</strong> {lastName}</p>
       <p><strong>Pronouns:</strong> {pronouns || 'Not provided'}</p>
       <p><strong>Email Address:</strong> {email}</p>
-      <button onClick={handleClick}>Logout</button>
+      <button onClick={handleClick} style={{padding:"0", minWidth:"90px"}}>Logout</button>
     </main>
   );
 }

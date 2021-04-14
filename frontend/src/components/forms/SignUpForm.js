@@ -10,7 +10,7 @@ export function SignUpButton() {
     setModalContent(<SignUpForm />);
   };
   return (
-    <button id="sign-up-button" onClick={handleClick}>
+    <button id="sign-up-button" style={{padding:"0", minWidth:"90px"}} onClick={handleClick}>
       Create New Account
     </button>
   );
@@ -107,7 +107,7 @@ export default function SignUpForm() {
       {message ? <p className="message">{message}</p> : null}
 
       <div>
-        <button onClick={handleSubmit}>Sign Up</button>
+        <button onClick={handleSubmit} style={{padding:"0", minWidth:"90px"}}>Sign Up</button>
       </div>
     </form>
   );

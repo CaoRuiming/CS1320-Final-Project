@@ -7,6 +7,8 @@
 
 header {
     border-bottom: 2px solid #4B9DA3;
+    padding: 0px; 
+    margin: 0; 
     // position: fixed;
     // top: 0;
     // width: 100%;
@@ -26,6 +28,7 @@ header {
         #header-logo {
             font-size: 25px; 
             margin: 0px;
+            padding: 0px; 
             color: $color-e;
         }
     
@@ -55,10 +58,13 @@ header {
             border: 1px solid #8E8E8E;
             border-radius: 5px;
             height: 30px;
-            padding: 5px;
+            padding: 0px;
+            padding-left: 5px; 
+            padding-right: 5px; 
             background-color: $color-f;
             color: white;
             font-weight: bold;
+            text-align: center;
         }
     }
 }
