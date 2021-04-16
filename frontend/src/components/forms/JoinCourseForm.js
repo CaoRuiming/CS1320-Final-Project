@@ -11,7 +11,7 @@ export function JoinCourseButton() {
     setModalContent(<JoinCourseForm />);
   };
   return (
-    <button id="join-course-button" onClick={handleClick} className="btn btn-primary" style={{paddingBottom: "10px", width: "100px", height: "60px"}}>
+    <button id="join-course-button" onClick={handleClick} style={{width: "100px", backgroundColor:"$color-b", marginTop:"20px"}}>
       Join Course
     </button>
   );
