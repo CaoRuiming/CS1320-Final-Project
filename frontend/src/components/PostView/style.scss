@@ -1,8 +1,10 @@
+@import '../../styles/variables.scss';
+
 article#postView{ 
-  background-color: rgb(59, 158, 153);
+  background-color: rgb(11, 122, 117);
   padding: 30px 20px;
   color: rgb(244, 255, 254);
-  height: 100%; 
+  min-height: 100%; 
 
   h2 { 
     padding: 0; 
@@ -13,7 +15,7 @@ article#postView{
   }
 
   .postViewContent{ 
-    background-color:rgba(0, 84, 87, 0.541); 
+    background-color:rgba(0, 62, 65, 0.541); 
     border-radius: 8px;
     padding: 10px;
 
@@ -43,7 +45,7 @@ article#postView{
     border-radius: 8px;
     height: 30px;
     background-color: rgb(159, 252, 224);
-    color: rgb(0, 0, 0);
+    color: $color-f;
     font-weight: bold;
     width: 100px; 
     margin-top: 30px;
