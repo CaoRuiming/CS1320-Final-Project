@@ -8,8 +8,8 @@
     height: 25px;
     min-width: 80px; 
     border-radius: 8px;
-    background-color: rgb(192, 255, 226); 
-    color: grey; 
+    background-color: rgb(178, 230, 227); 
+    color: rgb(0, 0, 0); 
     justify-content: center;
     align-items: center;
     padding-bottom: 3px;
@@ -19,7 +19,7 @@
     }
   
     &:hover {
-      background-color: rgb(119, 194, 159);
+      background-color: rgb(123, 238, 232);
     }
   }
 }

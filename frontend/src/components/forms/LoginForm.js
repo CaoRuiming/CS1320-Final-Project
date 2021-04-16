@@ -40,7 +40,7 @@ export default function LoginForm() {
 
   return (
     <form id="login-form" onSubmit={handleSubmit}>
-      <label htmlFor="login-username">Email Address</label>
+      <label htmlFor="login-username" style={{color:'black', margin:'0', padding:'0'}}>Email Address</label>
       <input
         id="login-username"
         type="email"
@@ -49,7 +49,7 @@ export default function LoginForm() {
         onChange={e => setUsername(e.target.value)}
         onKeyPress={handleSubmitOnEnter} required></input>
 
-      <label htmlFor="login-password">Password</label>
+      <label htmlFor="login-password" style={{color:'black', margin:'0', padding:'0', marginTop:'20px'}}>Password</label>
       <input
         id="login-password"
         type="password"
