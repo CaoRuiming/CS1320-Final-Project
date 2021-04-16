@@ -183,6 +183,5 @@ In the event something goes terribly wrong and you want to start from a clean sl
     - implemented Django search View
     - setup routes for API calls
     - implemented search functionality 
-    - styled home page
     - tested django authentication methods
     - created tests data for demo and testing functionality
