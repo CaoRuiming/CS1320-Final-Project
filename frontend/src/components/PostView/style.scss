@@ -2,6 +2,7 @@ article#postView{
   background-color: rgb(59, 158, 153);
   padding: 30px 20px;
   color: rgb(244, 255, 254);
+  height: 100%; 
 
   h2 { 
     padding: 0; 
@@ -27,7 +28,6 @@ article#postView{
   
   .reply-container{ 
     min-height: 100px; 
-    // background-color:rgba(213, 254, 255, 0.699); 
     background-color:white; 
     border-radius: 8px; 
     margin-top: 5px; 
@@ -42,13 +42,10 @@ article#postView{
   #edit-post-button {
     border-radius: 8px;
     height: 30px;
-    padding: 5px;
     background-color: rgb(95, 211, 139);
     color: white;
     font-weight: bold;
     width: 100px; 
-    align-self: flex-start;
-    justify-self: flex-end;
     margin-top: 30px;
     margin-bottom: 10px;
   }

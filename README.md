@@ -174,7 +174,11 @@ In the event something goes terribly wrong and you want to start from a clean sl
     - implemented all frontend and backend service classes
     - converted styling for frontend to SCSS
 - Ambika
-    - 
+    - worked on styling for home page 
+    - worked on styling for course list page 
+    - worked on styling for post feed and post view page 
+    - made home page and post view page mobile friendly
+    *Note: I was only able to work on frontend styling as my laptop was unable to handle docker, and I was not anticipating having to use docker for this class. Our mentor TA (Kalli) was made aware of this too.*  
 - Charles
     - implemented Django search View
     - setup routes for API calls
