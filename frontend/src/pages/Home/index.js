@@ -15,14 +15,14 @@ export default function Home() {
 
 	return (
 		<main id="home-page">
-			<div id="home-base" className="row" >
+			<div id="home-base" className="row" style={{marginRight:"0"}}>
 				<div id="left-section" className="col-md-8">
 					<h1>Discourse</h1>
 					<p>Learn Together</p>
 				</div>
 				<div id="right-section" className="col-md-4 ">
 					<LoginForm />
-					<div className="horizontal-center">
+					<div className="horizontal-center" style={{padding: "0", margin: "0"}}>
 						<p>or</p>
 						<SignUpButton />
 					</div>

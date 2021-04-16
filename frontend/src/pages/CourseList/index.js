@@ -15,8 +15,10 @@ export default function CourseList() {
   const studentCourses = user.student_courses.map(course => {
     return (
       <li key={`course=${course.id}`}>
-        <Link to={`/courses/${course.id}`}>{course.name}</Link>
-      </li>
+        <div className="single-course">
+          <Link to={`/courses/${course.id}`} className="course-name">{course.name}</Link>
+        </div>
+    </li>
     );
   });
   const instructorCourses = user.instructor_courses.map(course => {
@@ -35,7 +37,7 @@ export default function CourseList() {
         </div>
         <div className="sub-courses">
           {studentCourses.length ? <h3>Student Courses</h3> : null}
-          {studentCourses.length ? <ul className="sub-courses-list"><div className="single-course">{studentCourses}</div></ul> : null}
+          {studentCourses.length ? <ul className="sub-courses-list"><div>{studentCourses}</div></ul> : null}
         </div>
         {instructorCourses.length ? <h3>Instructor Courses</h3> : null}
         {instructorCourses.length ? <ul className="sub-courses-list"><div className="single-course">{instructorCourses}</div></ul> : null}

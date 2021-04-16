@@ -90,7 +90,7 @@ export default function PostView() {
       </div>
       <Tags tags={tags} />
       {hasEditPermission ? (
-        <EditPostButton post={postData} onSubmit={getPostData} />
+        <EditPostButton post={postData} onSubmit={getPostData} style={{margin:"0", padding:"0"}}/>
       ) : null}
       <div className="postViewContent"><p>{content}</p></div>
       <Answer
